@@ -1,0 +1,28 @@
+{
+  "baseline": {
+    "dps": 442240.55025127,
+    "ehp": 101832.70907909,
+    "attack_block": 74,
+    "spell_block": 73
+  },
+  "hard_constraints": {
+    "min_attack_block": 70,
+    "min_spell_block": 70,
+    "min_ehp_ratio": 0.95,
+    "min_dps_gain_pct": 3
+  },
+  "candidate_routes": {
+    "amulet_cold1": ["護符：Essence of Hatred 固定冷傷詞綴後補 +1 Cold"],
+    "amulet_spell1_dot20": ["護符：Essence of Hatred 固定冷傷詞綴後補 +1 Cold"],
+    "weapon_spell1": ["法術武器：Frigid Fossil + Resonator 取得 +1 Spell + Cold DoT"],
+    "weapon_cold1_dot30": ["法術武器：Frigid Fossil + Resonator 取得 +1 Spell + Cold DoT"],
+    "amulet_cold1+weapon_spell1": [
+      "護符：Essence of Hatred 固定冷傷詞綴後補 +1 Cold",
+      "法術武器：Frigid Fossil + Resonator 取得 +1 Spell + Cold DoT"
+    ],
+    "amulet_spell1_dot20+weapon_spell1_dot30": [
+      "護符：Essence of Hatred 固定冷傷詞綴後補 +1 Cold",
+      "法術武器：Frigid Fossil + Resonator 取得 +1 Spell + Cold DoT"
+    ]
+  }
+}

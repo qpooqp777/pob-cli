@@ -1,0 +1,14 @@
+[
+  {
+    "name": "same-node-mastery",
+    "add_nodes": [7388],
+    "remove_nodes": [7388],
+    "mastery": ["45558=30612"],
+    "metadata": {"purpose": "regression"}
+  },
+  {
+    "name": "remove-intelligence",
+    "remove_nodes": [7388],
+    "metadata": {"purpose": "defensive tradeoff"}
+  }
+]

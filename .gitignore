@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.DS_Store
+*.candidate.xml
+attached_build.xml
+slammerlappen_pob.xml
+reports/*.log
+/tmp/

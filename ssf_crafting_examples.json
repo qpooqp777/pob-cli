@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "assumptions": {
+    "league": "請改成實際聯盟",
+    "mode": "SSF",
+    "description": "以下成功率只是示範輸入，不能視為當前聯盟真實詞綴權重。請以 PoB 版本、Craft of Exile 或自己的實測資料校正。"
+  },
+  "unit_values": {
+    "Orb of Alchemy": 1,
+    "Orb of Scouring": 1,
+    "Chaos Orb": 1,
+    "Orb of Alteration": 0.25,
+    "Regal Orb": 2,
+    "Exalted Orb": 8,
+    "Divine Orb": 120,
+    "Essence of Hatred": 8,
+    "Essence of Delirium": 8,
+    "Harvest Lifeforce": 0.05,
+    "Primal Crystallised Lifeforce": 0.05,
+    "Perfect Fossil": 2,
+    "Frigid Fossil": 3,
+    "Sanctified Fossil": 3,
+    "Resonator": 1
+  },
+  "routes": [
+    {
+      "name": "護符：改造石／富豪石滾 +1 Cold Skill Gems + Cold DoT",
+      "success_probability": 0.002,
+      "materials_per_attempt": {
+        "Orb of Alteration": 80,
+        "Regal Orb": 1,
+        "Orb of Scouring": 0.5
+      },
+      "fixed_materials": {
+        "Turquoise Amulet base": 1
+      },
+      "notes": "示範模型；實際成功率應按目標詞綴階級、詞綴池、前後綴限制與保留詞綴策略校正。"
+    },
+    {
+      "name": "護符：Essence of Hatred 固定冷傷詞綴後補 +1 Cold",
+      "success_probability": 0.004,
+      "materials_per_attempt": {
+        "Essence of Hatred": 1,
+        "Orb of Scouring": 0.25,
+        "Regal Orb": 1
+      },
+      "fixed_materials": {
+        "Turquoise Amulet base": 1
+      },
+      "notes": "適合用來比較固定 Essence 詞綴後，另一個稀有目標詞綴的期望成本。"
+    },
+    {
+      "name": "法術武器：Essence／改造石取得 +1 Spell Skill Gems",
+      "success_probability": 0.003,
+      "materials_per_attempt": {
+        "Essence of Delirium": 1,
+        "Orb of Alteration": 60,
+        "Regal Orb": 1,
+        "Orb of Scouring": 0.5
+      },
+      "fixed_materials": {
+        "Imbued Wand base": 1
+      },
+      "notes": "這是稀有武器替換目標；目前 UNIQUE Mystic Refractor 不能直接套用任意新詞綴。"
+    },
+    {
+      "name": "法術武器：Frigid Fossil + Resonator 取得 +1 Spell + Cold DoT",
+      "success_probability": 0.006,
+      "materials_per_attempt": {
+        "Frigid Fossil": 1,
+        "Resonator": 1,
+        "Orb of Scouring": 0.2
+      },
+      "fixed_materials": {
+        "Imbued Wand base": 1
+      },
+      "notes": "SSF 可用化石路線的比較範例；請用自己的化石與 Resonator 存量更新成功率。"
+    }
+  ]
+}

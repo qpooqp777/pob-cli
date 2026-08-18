@@ -1,0 +1,18 @@
+{
+  "character": "Ninja Demo Character",
+  "className": "Deadeye",
+  "level": 90,
+  "stats": {
+    "life": 3420,
+    "fireResistance": 75,
+    "coldResistance": 63,
+    "lightningResistance": 75,
+    "chaosResistance": -32,
+    "spellSuppressionChance": 48,
+    "evasion": 8500
+  },
+  "equipment": [
+    {"slot": "Gloves", "name": "稀有手套", "explicitModifiers": ["+80 最大生命", "+28% 閃電抗性", "+14% 法術壓制"]},
+    {"slot": "Ring 1", "name": "稀有 Opal Ring", "explicitModifiers": ["+72 最大生命", "+35% 火焰抗性", "+32% 冰冷抗性"]}
+  ]
+}

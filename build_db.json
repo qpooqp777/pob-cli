@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "game": "PoE1",
+  "platform": "PC",
+  "poe_version": "3.29",
+  "league": "Allflame",
+  "builds": [
+    {
+      "id": "toxic-rain-pathfinder",
+      "name_zhTW": "毒雨 Pathfinder 弓系",
+      "name_en": "Toxic Rain Pathfinder Bow",
+      "class": "Ranger",
+      "ascendancy": "Pathfinder",
+      "tags": ["弓", "混沌持續傷害", "毒系", "SSF", "HC"],
+      "main_skill": "Toxic Rain",
+      "notes": "這是一個可由弓箭升級到 Toxic Rain 混沌持續傷害的通用模板；實際傷害、抗性與生存數值必須由當前 PoB 核心重算。",
+      "stages": {
+        "early": {
+          "label_zhTW": "初期：1–45 級",
+          "level_range": [1, 45],
+          "tree_strategy": [
+            "先取得生命、弓傷害、攻速與移動速度路徑",
+            "優先連到 Method to the Madness 方向的混沌／持續傷害區",
+            "不要過早投入高等級才有收益的珠寶圈"
+          ],
+          "key_nodes": ["Fangs of the Viper", "Weathered Hunter", "Revenge of the Hunted", "Corruption"],
+          "gear": [
+            {"slot": "武器", "base": "Short Bow / Long Bow", "target_mods": ["+1 to Level of Socketed Gems", "攻速", "物理傷害"], "priority": 1},
+            {"slot": "胸甲", "base": "任何 4-link 護甲／閃避胸甲", "target_mods": ["生命", "元素抗性"], "priority": 2},
+            {"slot": "鞋子", "base": "Boots", "target_mods": ["移動速度 20%+", "生命", "元素抗性"], "priority": 3},
+            {"slot": "其他", "base": "稀有裝備", "target_mods": ["生命", "火／冰／電抗性", "敏捷"], "priority": 4}
+          ],
+          "skills": [
+            {"group": "主技能", "gems": ["Caustic Arrow", "Mirage Archer", "Void Manipulation", "Vicious Projectiles"]},
+            {"group": "升級主技能", "gems": ["Toxic Rain", "Mirage Archer", "Void Manipulation", "Vicious Projectiles"]},
+            {"group": "光環", "gems": ["Grace", "Malevolence"]},
+            {"group": "輔助", "gems": ["Dash", "Despair", "Withering Step"]}
+          ],
+          "milestones": ["先完成 4-link", "元素抗性達 75%", "生命詞綴優先於傷害詞綴"]
+        },
+        "mid": {
+          "label_zhTW": "中期：46–80 級",
+          "level_range": [46, 80],
+          "tree_strategy": [
+            "完成 Pathfinder 升華：Nature's Reprisal、Master Toxicist、Nature's Adrenaline",
+            "取得 Toxic Strikes、Dirty Techniques、Growth and Decay、Atrophy",
+            "補足生命、混沌抗性與法術抑制；HC 不以紙面 DPS 換生存"
+          ],
+          "key_nodes": ["Toxic Strikes", "Dirty Techniques", "Growth and Decay", "Atrophy", "Nature's Reprisal", "Master Toxicist", "Nature's Adrenaline", "Inveterate"],
+          "gear": [
+            {"slot": "武器", "base": "Thicket Bow / Spine Bow", "target_mods": ["+2 to Level of Socketed Bow Gems", "+1 to Level of Socketed Gems", "弓攻速", "混沌持續傷害倍率"], "priority": 1},
+            {"slot": "胸甲", "base": "Evasion Chest", "target_mods": ["高生命", "高閃避", "法術抑制或抗性"], "priority": 2},
+            {"slot": "箭袋", "base": "Broadhead Arrow Quiver", "target_mods": ["生命", "攻速", "混沌持續傷害倍率", "投射物傷害"], "priority": 3},
+            {"slot": "頭盔／手套／鞋子", "base": "稀有裝備", "target_mods": ["生命", "法術抑制", "抗性", "移動速度"], "priority": 4},
+            {"slot": "護符", "base": "Agate／Jade Amulet", "target_mods": ["生命", "技能寶石等級", "混沌持續傷害倍率", "抗性"], "priority": 5}
+          ],
+          "skills": [
+            {"group": "Toxic Rain 5-link", "gems": ["Toxic Rain", "Vicious Projectiles", "Void Manipulation", "Swift Affliction", "Mirage Archer"]},
+            {"group": "詛咒／減益", "gems": ["Despair", "Withering Step"]},
+            {"group": "防禦", "gems": ["Grace", "Malevolence", "Defiance Banner", "Steelskin"]},
+            {"group": "機動", "gems": ["Dash", "Lifetap", "Dash"]}
+          ],
+          "milestones": ["Toxic Rain 至少 5-link", "法術抑制逐步接近 100%", "混沌抗性不要低於 0%", "開始使用 Divine Flask 與移除流血／腐化之血方案"]
+        },
+        "late": {
+          "label_zhTW": "後期：81–100 級",
+          "level_range": [81, 100],
+          "tree_strategy": [
+            "完成所有核心混沌持續傷害與生命路徑，再依 HC 需求補法術抑制、珠寶洞與最大抗性",
+            "升華優先確認 Nature's Reprisal、Master Toxicist、Nature's Adrenaline 與防禦向第四點",
+            "每次重點前都用 pob calc 比較 Total EHP、最大承受傷害與 Toxic Rain DPS"
+          ],
+          "key_nodes": ["Corruption", "Method to the Madness", "Dirty Techniques", "Growth and Decay", "Atrophy", "Inveterate", "Survivalist", "Nature's Reprisal", "Master Toxicist"],
+          "gear": [
+            {"slot": "武器", "base": "高物品等級 Spine Bow", "target_mods": ["+3 to Level of Socketed Bow Gems", "+1 to Level of Socketed Gems", "高攻速", "混沌持續傷害倍率", "品質 28%+"], "priority": 1},
+            {"slot": "箭袋", "base": "高物品等級 Broadhead／Spike-Point Quiver", "target_mods": ["生命", "攻速", "混沌持續傷害倍率", "投射物傷害", "抗性補足"], "priority": 2},
+            {"slot": "胸甲", "base": "高閃避稀有胸甲", "target_mods": ["高生命", "法術抑制", "最大生命%", "抗性", "6-link"], "priority": 3},
+            {"slot": "鞋子", "base": "高閃避稀有靴子", "target_mods": ["30%+ 移動速度", "生命", "法術抑制", "混沌抗性", "免疫或避免冰緩"], "priority": 4},
+            {"slot": "珠寶", "base": "Viridian／Abyss Jewel", "target_mods": ["生命", "攻速", "混沌持續傷害倍率", "抗性"], "priority": 5}
+          ],
+          "skills": [
+            {"group": "Toxic Rain 6-link", "gems": ["Toxic Rain", "Vicious Projectiles", "Void Manipulation", "Swift Affliction", "Efficacy", "Empower"]},
+            {"group": "光環／防禦", "gems": ["Grace", "Malevolence", "Defiance Banner", "Determination 或 Purity of Elements"]},
+            {"group": "減益／機動", "gems": ["Despair", "Withering Step", "Dash", "Lifetap"]}
+          ],
+          "milestones": ["6-link 主技能", "法術抑制 100%", "元素抗性 75% 以上並保留超額抗性", "混沌抗性至少 50% 以上作為 HC 目標", "以 PoB 實測替換每件裝備"]
+        }
+      },
+      "pob_export": {
+        "tree_version": "3_29",
+        "class_id": 2,
+        "ascend_class_id": 3,
+        "main_skill": "Toxic Rain",
+        "main_skill_id": "ToxicRain",
+        "support_gems": ["ViciousProjectiles", "VoidManipulation", "SwiftAffliction", "Efficacy", "Empower"]
+      }
+    }
+  ]
+}

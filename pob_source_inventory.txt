@@ -1,0 +1,510 @@
+Build.lua
+BuildDisplayStats.lua
+BuildList.lua
+BuildListHelpers.lua
+BuildSiteTools.lua
+CalcActiveSkill.lua
+CalcBase.lua
+CalcBreakdown.lua
+CalcDefence.lua
+CalcFormat.lua
+CalcMirages.lua
+CalcOffence.lua
+CalcPerform.lua
+CalcSections.lua
+CalcSetup.lua
+CalcTools.lua
+CalcTriggers.lua
+Calcs.lua
+Common.lua
+ConfigOptions.lua
+ConfigVisibility.lua
+Data.lua
+DataAbyssJewelLookUpTableHelper.lua
+DataJewelFileLoader.lua
+DataLegionLookUpTableHelper.lua
+ItemSlotHelper.lua
+ItemTools.lua
+Main.lua
+ModParser.lua
+ModTools.lua
+PantheonTools.lua
+StatDescriber.lua
+ToastNotification.lua
+Utils.lua
+--- classes ---
+BuildListControl.lua
+ButtonControl.lua
+CalcBreakdownControl.lua
+CalcSectionControl.lua
+CalcsTab.lua
+CheckBoxControl.lua
+CompareBuySimilar.lua
+CompareCalcsHelpers.lua
+CompareEntry.lua
+ComparePowerReportListControl.lua
+CompareTab.lua
+ConfigSetListControl.lua
+ConfigTab.lua
+Control.lua
+ControlHost.lua
+DraggerControl.lua
+DropDownControl.lua
+EditControl.lua
+ExtBuildListControl.lua
+ExtBuildListProvider.lua
+FolderListControl.lua
+GemSelectControl.lua
+GemTooltip.lua
+ImportTab.lua
+Item.lua
+ItemDBControl.lua
+ItemListControl.lua
+ItemSetListControl.lua
+ItemSlotControl.lua
+ItemsTab.lua
+LabelControl.lua
+ListControl.lua
+MinionListControl.lua
+MinionSearchListControl.lua
+ModDB.lua
+ModList.lua
+ModStore.lua
+NotableDBControl.lua
+NotesTab.lua
+PartyTab.lua
+PassiveMasteryControl.lua
+PassiveSpec.lua
+PassiveSpecListControl.lua
+PassiveTree.lua
+PassiveTreeView.lua
+PathControl.lua
+PoBArchivesProvider.lua
+PoEAPI.lua
+PopupDialog.lua
+PowerReportListControl.lua
+RectangleOutlineControl.lua
+ResizableEditControl.lua
+ScrollBarControl.lua
+SearchHost.lua
+SectionControl.lua
+SharedItemListControl.lua
+SharedItemSetListControl.lua
+SkillListControl.lua
+SkillSetListControl.lua
+SkillsTab.lua
+SliderControl.lua
+TextListControl.lua
+TimelessJewelListControl.lua
+TimelessJewelSocketControl.lua
+Tooltip.lua
+TooltipHost.lua
+TradeHelpers.lua
+TradeQuery.lua
+TradeQueryGenerator.lua
+TradeQueryRateLimiter.lua
+TradeQueryRequests.lua
+TradeStatWeightMultiplierListControl.lua
+TreeTab.lua
+UndoHandler.lua
+--- key symbols ---
+src/Modules/Build.lua:89:		if self:LoadDB(buildXML, "Unnamed build") then
+src/Modules/Build.lua:95:		if self:LoadDBFile() then
+src/Modules/Build.lua:130:		self:SaveDBFile()
+src/Modules/Build.lua:441:	self.controls.modeImport = new("ButtonControl"):ButtonControl({"TOPLEFT",self.anchorSideBar,"TOPLEFT"}, {0, 0, 134, 20}, "Import/Export Build", function()
+src/Modules/Build.lua:942:			self:SaveDBFile()
+src/Modules/Build.lua:947:			self:SaveDBFile()
+src/Modules/Build.lua:1170:					self:SaveDBFile()
+src/Modules/Build.lua:1369:		self:SaveDBFile()
+src/Modules/Build.lua:1429:		self:SaveDBFile()
+src/Modules/Build.lua:1535:	controls.similarBuildList:SetImportCode(common.base64.encode(Deflate(self:SaveDB("code"))):gsub("+","-"):gsub("/","_"))
+src/Modules/Build.lua:1984:function buildMode:LoadDB(xmlText, fileName)
+src/Modules/Build.lua:2024:function buildMode:LoadDBFile()
+src/Modules/Build.lua:2036:	return self:LoadDB(xmlText, self.dbFileName)
+src/Modules/Build.lua:2039:function buildMode:SaveDB(fileName)
+src/Modules/Build.lua:2066:function buildMode:SaveDBFile()
+src/Modules/Build.lua:2071:	local xmlText = self:SaveDB(self.dbFileName)
+src/Modules/BuildList.lua:46:		self.controls.buildList:LoadBuild(self.controls.buildList.selValue)
+src/Modules/BuildSiteTools.lua:4:-- Functions used to import and export PoB build codes from external websites
+src/Modules/BuildSiteTools.lua:9:-- Import/Export websites list used in dropdowns
+src/Modules/BuildSiteTools.lua:10:-- label: What a user sees in the export dropdown and when the import box recognizes the website
+src/Modules/BuildSiteTools.lua:15:-- codeOut: Gets prepended to returned code from postUrl.  Needed to enable export in ImportTab
+src/Modules/BuildSiteTools.lua:16:-- postUrl: The URL to upload a build code.  Needed to enable export in ImportTab
+src/Modules/BuildSiteTools.lua:17:-- postFields: The POST fields prepended to base64-encoded XML.  Needed to enable export in ImportTab
+src/Modules/BuildSiteTools.lua:47:function buildSites.UploadBuild(buildCode, websiteInfo)
+src/Modules/BuildSiteTools.lua:50:		response = LaunchSubScript([[
+src/Modules/BuildSiteTools.lua:88:function buildSites.DownloadBuild(link, websiteInfo, callback)
+src/Modules/CalcActiveSkill.lua:433:	-- This is used to calculate totem life
+src/Modules/CalcActiveSkill.lua:447:	-- Calculate Distance for meleeDistance or projectileDistance (for melee proximity, e.g. Impact)
+src/Modules/CalcDefence.lua:57:-- Calculate hit chance
+src/Modules/CalcDefence.lua:66:-- Calculate damage reduction from armour, float
+src/Modules/CalcDefence.lua:74:-- Calculate damage reduction from armour, int
+src/Modules/CalcDefence.lua:82:---@param baseDmg number for which to calculate the damage
+src/Modules/CalcDefence.lua:145:---Calculates the taken damages from enemy outgoing damage
+src/Modules/CalcDefence.lua:148:---@param actor table actor (with output and modDB) for which to calculate the damage
+src/Modules/CalcDefence.lua:187:---@param actor table actor (with output and modDB) for which to calculate the pools
+src/Modules/CalcDefence.lua:1748:				-- Calculate the amount converted/gained as
+src/Modules/CalcDefence.lua:1959:		-- Calculate incoming damage multiplier
+src/Modules/CalcDefence.lua:2722:		-- Recalculate total hit damage
+src/Modules/CalcDefence.lua:3298:				t_insert(breakdown[maxHitCurType], "^8Maximum hit is calculated in reverse -")
+src/Modules/CalcMirages.lua:24:local function calculateMirage(env, config)
+src/Modules/CalcMirages.lua:427:	return calculateMirage(env, config)
+src/Modules/CalcOffence.lua:68:-- Calculate min/max damage for the given damage type
+src/Modules/CalcOffence.lua:74:	-- Calculate conversions
+src/Modules/CalcOffence.lua:98:		-- No base damage for this type, don't need to calculate modifiers
+src/Modules/CalcOffence.lua:152:---Calculates skill radius
+src/Modules/CalcOffence.lua:160:---Calculates the tertiary radius for Molten Strike, correctly handling the deadzone.
+src/Modules/CalcOffence.lua:172:---Calculates modifiers needed to reach the next and previous radius breakpoints
+src/Modules/CalcOffence.lua:220:	---Helper that calculates the tertiary radius with incremental modifiers to the 4 relevant pools.
+src/Modules/CalcOffence.lua:399:					-- Calculate all the possible base radii
+src/Modules/CalcOffence.lua:405:					-- Calculate the modified radius for each base radius
+src/Modules/CalcOffence.lua:1023:	-- Calculate skill type stats
+src/Modules/CalcOffence.lua:1319:		-- Calculate additional mine throw
+src/Modules/CalcOffence.lua:1659:	-- Calculate costs (may be slightly off due to rounding differences)
+src/Modules/CalcOffence.lua:1679:		--Support cost multipliers are calculated first and rounded down after 4 digits
+src/Modules/CalcOffence.lua:1681:		-- First pass to calculate base costs. Used for cost conversion (e.g. Petrified Blood)
+src/Modules/CalcOffence.lua:1878:	-- Calculate damage conversion percentages
+src/Modules/CalcOffence.lua:2111:	-- Calculate how often you hit (speed, accuracy, block, etc)
+src/Modules/CalcOffence.lua:2122:		-- Calculate hit chance
+src/Modules/CalcOffence.lua:2205:		-- Calculate attack/cast speed
+src/Modules/CalcOffence.lua:2249:			--Calculates the max number of trauma stacks you can sustain
+src/Modules/CalcOffence.lua:2524:	--Calculate damage (exerts, crits, ruthless, DPS, etc)
+src/Modules/CalcOffence.lua:2545:					if value.activeEffect.grantedEffect.name == "Ancestral Cry" and activeSkill.skillTypes[SkillType.MeleeSingleTarget] and not globalOutput.AncestralCryCalculated and not value.skillFlags.disable then
+src/Modules/CalcOffence.lua:2567:						globalOutput.AncestralCryCalculated = true
+src/Modules/CalcOffence.lua:2568:					elseif value.activeEffect.grantedEffect.name == "Infernal Cry" and not globalOutput.InfernalCryCalculated and not value.skillFlags.disable then
+src/Modules/CalcOffence.lua:2592:						globalOutput.InfernalCryCalculated = true
+src/Modules/CalcOffence.lua:2593:					elseif value.activeEffect.grantedEffect.name == "Intimidating Cry" and activeSkill.skillTypes[SkillType.Melee] and not globalOutput.IntimidatingCryCalculated and not value.skillFlags.disable then
+src/Modules/CalcOffence.lua:2638:						globalOutput.IntimidatingCryCalculated = true
+src/Modules/CalcOffence.lua:2639:					elseif value.activeEffect.grantedEffect.name == "Rallying Cry" and activeSkill.skillTypes[SkillType.Melee] and not globalOutput.RallyingCryCalculated and not value.skillFlags.disable then
+src/Modules/CalcOffence.lua:2684:						globalOutput.RallyingCryCalculated = true
+src/Modules/CalcOffence.lua:2686:					elseif value.activeEffect.grantedEffect.name == "Seismic Cry" and activeSkill.skillTypes[SkillType.Slam] and not globalOutput.SeismicCryCalculated and not value.skillFlags.disable then
+src/Modules/CalcOffence.lua:2716:						globalOutput.SeismicCryCalculated = true
+src/Modules/CalcOffence.lua:2717:					elseif value.activeEffect.grantedEffect.name == "Battlemage's Cry" and not globalOutput.BattleMageCryCalculated and not value.skillFlags.disable then
+src/Modules/CalcOffence.lua:2741:						globalOutput.BattleMageCryCalculated = true
+src/Modules/CalcOffence.lua:2754:				-- Calculate Exerted Attack Uptime
+src/Modules/CalcOffence.lua:2756:				-- 1) they don't pay attention and therefore we calculated exerted attack uptime as just the maximum uptime of any enabled warcries that exert attacks
+src/Modules/CalcOffence.lua:2771:				if globalOutput.ExertedAttackUptimeRatio > 0 and not globalOutput.ExertedAttackUptimeRatioCalculated then
+src/Modules/CalcOffence.lua:2801:					globalOutput.ExertedAttackUptimeRatioCalculated = true
+src/Modules/CalcOffence.lua:2818:						local calculated = "PactOf"..pactKey.."Calculated"
+src/Modules/CalcOffence.lua:2819:						if pactApplies and not globalOutput[calculated] and not value.skillFlags.disable then
+src/Modules/CalcOffence.lua:2883:							globalOutput[calculated] = true
+src/Modules/CalcOffence.lua:2895:			-- Calculate Ruthless Blow chance/multipliers + Fist of War multipliers
+src/Modules/CalcOffence.lua:2949:		-- Calculate maximum sustainable fuses and explosion rate for Explosive Arrow
+src/Modules/CalcOffence.lua:2955:		-- Calculate crit chance, crit multiplier, and their combined effect
+src/Modules/CalcOffence.lua:3139:					-- get crit chance and calculate odds of critting twice
+src/Modules/CalcOffence.lua:3191:		-- Calculate chance and multiplier for dealing triple damage on Normal and Crit
+src/Modules/CalcOffence.lua:3196:		-- Calculate chance and multiplier for dealing double damage on Normal and Crit
+src/Modules/CalcOffence.lua:3214:		-- Calculate culling DPS
+src/Modules/CalcOffence.lua:3224:		--Calculate reservation DPS
+src/Modules/CalcOffence.lua:3258:		-- Calculate base hit damage
+src/Modules/CalcOffence.lua:3297:		-- Calculate hit damage for each damage type
+src/Modules/CalcOffence.lua:3615:		-- For each damage type, calculate percentage of total damage. Also tracks the highest damage type and outputs a Condition:TypeIsHighestDamageType flag for whichever the highest type is
+src/Modules/CalcOffence.lua:3632:		-- Calculate leech
+src/Modules/CalcOffence.lua:3670:		-- Calculate gain on hit
+src/Modules/CalcOffence.lua:3684:		-- Calculate gain on kill
+src/Modules/CalcOffence.lua:3700:		-- Calculate average damage and final DPS
+src/Modules/CalcOffence.lua:3769:		-- Calculate PvP values
+src/Modules/CalcOffence.lua:3982:	-- Calculate leech rates
+src/Modules/CalcOffence.lua:4045:	--Calculate ailments and debuffs (poison, bleed, ignite, impale, exposure, etc)
+src/Modules/CalcOffence.lua:4072:		-- Calculate chance to inflict secondary dots/status effects
+src/Modules/CalcOffence.lua:4189:		---Calculates normal and crit damage to be used in non-damaging ailment calculations
+src/Modules/CalcOffence.lua:4209:		-- Calculate the inflict chance and base damage of a secondary effect (bleed/poison/ignite/shock/freeze)
+src/Modules/CalcOffence.lua:4289:		-- Calculate bleeding chance and damage
+src/Modules/CalcOffence.lua:4562:		-- Calculate poison chance and damage
+src/Modules/CalcOffence.lua:4602:			-- Calculate average number of poisons that will be active on the enemy at once
+src/Modules/CalcOffence.lua:4867:		-- Calculate ignite chance and damage
+src/Modules/CalcOffence.lua:5209:		-- Calculate non-damaging ailments effect and duration modifiers
+src/Modules/CalcOffence.lua:5392:		-- Calculate knockback chance/distance
+src/Modules/CalcOffence.lua:5403:		-- Calculate enemy stun modifiers
+src/Modules/CalcOffence.lua:5473:		-- Calculate impale chance and modifiers
+src/Modules/CalcOffence.lua:5576:		-- Calculate DPS for Essence of Delirium's Decay effect
+src/Modules/CalcOffence.lua:5648:	-- Calculate skill DOT components
+src/Modules/CalcOffence.lua:5716:			--Variables below calculate DOT damage
+src/Modules/CalcOffence.lua:5793:	--Calculates and displays cost per second for skills that don't already have one (link skills)
+src/Modules/CalcOffence.lua:5983:	-- Calculate combined DPS estimate, including DoTs
+src/Modules/CalcPerform.lua:133:-- Calculate attributes, and set conditions
+src/Modules/CalcPerform.lua:291:		-- Shrine Buffs: Must be done before life pool calculated for massive shrine
+src/Modules/CalcPerform.lua:388:	-- Calculate attributes
+src/Modules/CalcPerform.lua:389:	local calculateAttributes = function()
+src/Modules/CalcPerform.lua:390:		for pass = 1, 2 do -- Calculate twice because of circular dependency (X attribute higher than Y attribute)
+src/Modules/CalcPerform.lua:418:	local calculateOmniscience = function (convert)
+src/Modules/CalcPerform.lua:421:		for pass = 1, 2 do -- Calculate twice because of circular dependency (X attribute higher than Y attribute)
+src/Modules/CalcPerform.lua:483:		calculateOmniscience()
+src/Modules/CalcPerform.lua:485:		calculateAttributes()
+src/Modules/CalcPerform.lua:488:	-- Calculate total attributes
+src/Modules/CalcPerform.lua:527:-- Calculate life/mana reservation
+src/Modules/CalcPerform.lua:952:	-- Calculate current and maximum charges
+src/Modules/CalcPerform.lua:1246:-- 5. Sets conditions and calculates attributes (doActorAttribsConditions)
+src/Modules/CalcPerform.lua:1247:-- 6. Calculates life and mana (doActorLifeMana)
+src/Modules/CalcPerform.lua:1248:-- 6. Calculates reservations
+src/Modules/CalcPerform.lua:1252:-- 10. Calculates defence and offence stats (calcs.defence, calcs.offence)
+src/Modules/CalcPerform.lua:1278:	local partyTabEnableExportBuffs = env.build.partyTab.enableExportBuffs and env.mode ~= "CALCULATOR"
+src/Modules/CalcPerform.lua:1638:		-- This is also the reason why this value needs a separate multiplier and cannot just be calculated into FlaskLifeRecovery.
+src/Modules/CalcPerform.lua:1905:	-- Calculate attributes and life/mana pools
+src/Modules/CalcPerform.lua:1929:	-- Calculate skill life and mana reservations
+src/Modules/CalcPerform.lua:2113:	-- Calculate number of active heralds and auras affecting self
+src/Modules/CalcPerform.lua:2139:	-- Calculate charges early to enable usage of stats that depend on charge count
+src/Modules/CalcPerform.lua:2156:	local buffExports = { Aura = {}, Curse = {}, Warcry = {}, Link = {}, EnemyMods = {}, EnemyConditions = {}, PlayerMods = {} }
+src/Modules/CalcPerform.lua:2292:					if partyTabEnableExportBuffs and (buff.applyAllies or skillModList:Flag(nil, "BuffAppliesToAllies") or skillModList:Flag(nil, "BuffAppliesToPartyMembers")) then
+src/Modules/CalcPerform.lua:2295:						buffExports["Aura"]["otherEffects"] = buffExports["Aura"]["otherEffects"] or { }
+src/Modules/CalcPerform.lua:2296:						buffExports["Aura"]["otherEffects"][buff.name] =  { effectMult = (1 + inc / 100) * more, modList = buff.modList }
+src/Modules/CalcPerform.lua:2383:						if partyTabEnableExportBuffs then
+src/Modules/CalcPerform.lua:2389:							buffExports["Warcry"][buff.name] = { effectMult = (1 + inc / 100) * more * uptime, modList = newModList }
+src/Modules/CalcPerform.lua:2448:						if buffExports["Aura"][buff.name] then
+src/Modules/CalcPerform.lua:2449:							buffExports["Aura"][buff.name.."_Debuff"] = buffExports["Aura"][buff.name]
+src/Modules/CalcPerform.lua:2451:						buffExports["Aura"][buff.name] = { effectMult = mult, modList = newModList }
+src/Modules/CalcPerform.lua:2461:							buffExports["Aura"][buff.name..(buffExports["Aura"][buff.name] and "_Debuff" or "")] = { effectMult = mult, modList = newModList }
+src/Modules/CalcPerform.lua:2527:							buffExports["Aura"][buff.name..(buffExports["Aura"][buff.name] and "_Debuff" or "")] = { effectMult = mult, modList = newModList }
+src/Modules/CalcPerform.lua:2584:							buffExports["Aura"][buff.name..(buffExports["Aura"][buff.name] and "_Debuff" or "")] = { effectMult = mult, modList = newModList }
+src/Modules/CalcPerform.lua:2637:						if partyTabEnableExportBuffs then
+src/Modules/CalcPerform.lua:2638:							buffExports["Curse"][buff.name] = { isMark = curse.isMark, effectMult = curse.isMark and mult or (1 + inc / 100) * moreMark, modList = buff.modList }
+src/Modules/CalcPerform.lua:2660:				if env.mode_buffs and (#linkSkills < 1) and (partyTabEnableExportBuffs or linksApplyToMinions) then
+src/Modules/CalcPerform.lua:2683:					if partyTabEnableExportBuffs then
+src/Modules/CalcPerform.lua:2687:						buffExports["Link"][buff.name] = { effectMult = mult, modList = newModList }
+src/Modules/CalcPerform.lua:2757:								if partyTabEnableExportBuffs then
+src/Modules/CalcPerform.lua:2760:									buffExports["Aura"]["otherEffects"] = buffExports["Aura"]["otherEffects"] or { }
+src/Modules/CalcPerform.lua:2761:									buffExports["Aura"]["otherEffects"][buff.name] =  { effectMult = (1 + inc / 100) * more, modList = buff.modList }
+src/Modules/CalcPerform.lua:2841:								if buffExports["Aura"][buff.name] then
+src/Modules/CalcPerform.lua:2842:									buffExports["Aura"][buff.name.."_Debuff"] = buffExports["Aura"][buff.name]
+src/Modules/CalcPerform.lua:2844:								buffExports["Aura"][buff.name] = { effectMult = mult, modList = newModList }
+src/Modules/CalcPerform.lua:2913:										buffExports["Aura"][buff.name..(buffExports["Aura"][buff.name] and "_Debuff" or "")] = { effectMult = mult, modList = buff.modList }
+src/Modules/CalcPerform.lua:3159:	buffExports["CurseLimit"] = curses.limit
+src/Modules/CalcPerform.lua:3167:			-- Calculate curses that ignore hex limit after
+src/Modules/CalcPerform.lua:3331:		-- Calculate resistances for ManaIncreasedByOvercappedLightningRes without mutating conversion mods on the player ModDB.
+src/Modules/CalcPerform.lua:3353:	buffExports["Aura"]["extraAura"] = { effectMult = 1, modList = new("ModList"):ModList() }
+src/Modules/CalcPerform.lua:3370:			buffExports["Aura"]["extraAura"].modList:AddMod(value.mod)
+src/Modules/CalcPerform.lua:3432:	-- Calculate maximum and apply the strongest non-damaging ailments
+src/Modules/CalcPerform.lua:3601:		local calculatedLifePool = { }
+src/Modules/CalcPerform.lua:3636:						or (pool ~= spectreLifePool and not calculatedLifePool[pool.life]))
+src/Modules/CalcPerform.lua:3675:							calculatedLifePool[pool.life] = true
+src/Modules/CalcPerform.lua:3741:	 -- Export modifiers to enemy conditions and stats for party tab
+src/Modules/CalcPerform.lua:3742:	if partyTabEnableExportBuffs then
+src/Modules/CalcPerform.lua:3745:                buffExports["EnemyConditions"][k] = true
+src/Modules/CalcPerform.lua:3759:                            if buffExports["EnemyMods"][k] then
+src/Modules/CalcPerform.lua:3760:								if not buffExports["EnemyMods"][k].MultiStat then
+src/Modules/CalcPerform.lua:3761:									buffExports["EnemyMods"][k] = { MultiStat = true, buffExports["EnemyMods"][k] }
+src/Modules/CalcPerform.lua:3763:								t_insert(buffExports["EnemyMods"][k], v)
+src/Modules/CalcPerform.lua:3765:								buffExports["EnemyMods"][k] = v
+src/Modules/CalcPerform.lua:3775:				buffExports.PlayerMods["Enemy"..damageType.."ResistEqualToYours"] = true
+src/Modules/CalcPerform.lua:3776:				buffExports.PlayerMods[damageType.."Resist="..tostring(output[damageType.."Resist"])] = true
+src/Modules/CalcPerform.lua:3780:			buffExports.PlayerMods["PartyMemberMaximumEnduranceChargesEqualToYours"] = true
+src/Modules/CalcPerform.lua:3781:			buffExports.PlayerMods["EnduranceChargesMax="..tostring(output["EnduranceChargesMax"])] = true
+src/Modules/CalcPerform.lua:3784:		buffExports.PlayerMods["MovementSpeedMod|percent|max="..tostring(output["MovementSpeedMod"] * 100)] = true
+src/Modules/CalcPerform.lua:3786:		for _, mod in ipairs(buffExports["Aura"]["extraAura"].modList) do
+src/Modules/CalcPerform.lua:3792:				buffExports.PlayerMods["PartyMemberFortifyEqualToYours"] = true
+src/Modules/CalcPerform.lua:3793:				buffExports.PlayerMods["FortificationStacks="..tostring(output.FortificationStacks or 0)] = true
+src/Modules/CalcPerform.lua:3798:		for auraName, aura in pairs(buffExports["Aura"]) do
+src/Modules/CalcPerform.lua:3800:				buffExports["Aura"][auraName] = copyTable(buffExports["Aura"][auraName])
+src/Modules/CalcPerform.lua:3801:				aura = buffExports["Aura"][auraName]
+src/Modules/CalcPerform.lua:3802:				local stackCount = buffExports["EnemyMods"]["Multiplier:"..auraName.."Stack"] and buffExports["EnemyMods"]["Multiplier:"..auraName.."Stack"].value or 0
+src/Modules/CalcPerform.lua:3803:				buffExports["EnemyMods"]["Multiplier:"..auraName.."Stack"] = nil
+src/Modules/CalcPerform.lua:3805:					buffExports["Aura"][auraName] = nil
+src/Modules/CalcPerform.lua:3817:				if buffExports["Aura"][auraName.." Limit"] then
+src/Modules/CalcPerform.lua:3818:					buffExports["Aura"][auraName.." Limit"] = copyTable(buffExports["Aura"][auraName.." Limit"])
+src/Modules/CalcPerform.lua:3819:					aura = buffExports["Aura"][auraName.." Limit"]
+src/Modules/CalcPerform.lua:3821:						buffExports["Aura"][auraName.." Limit"] = nil
+src/Modules/CalcPerform.lua:3837:		for linkName, link in pairs(buffExports["Link"]) do
+src/Modules/CalcPerform.lua:3839:				buffExports.PlayerMods["Life="..tostring(output["Life"])] = true
+src/Modules/CalcPerform.lua:3844:						buffExports.PlayerMods["BlockChanceMax="..tostring(output["BlockChanceMax"])] = true
+src/Modules/CalcPerform.lua:3846:						buffExports.PlayerMods["BlockChance="..tostring(output["BlockChance"])] = true
+src/Modules/CalcPerform.lua:3848:						buffExports.PlayerMods["MaxLifeLeechRatePercent="..tostring(output["MaxLifeLeechRatePercent"])] = true
+src/Modules/CalcPerform.lua:3850:						buffExports.PlayerMods["EnergyShieldRecoveryCap="..tostring(output["EnergyShieldRecoveryCap"])] = true
+src/Modules/CalcPerform.lua:3853:							buffExports.PlayerMods["MainHand.CritChance="..tostring(output["MainHand"]["CritChance"])] = true
+src/Modules/CalcPerform.lua:3855:							buffExports.PlayerMods["MainHand.CritChance="..tostring(env.player.weaponData1.CritChance)] = true
+src/Modules/CalcPerform.lua:3861:		env.build.partyTab:setBuffExports(buffExports)
+src/Modules/CalcPerform.lua:3869:			-- calculate Gem Level of MainSkill
+src/Modules/CalcPerform.lua:3891:			-- calculate Gem Quality of MainSkill
+src/Modules/CalcSections.lua:784:	{ label = "Max Sust. Fuses", haveOutput = "MaxExplosiveArrowFuseCalculated", { format = "{0:output:MaxExplosiveArrowFuseCalculated} Fuses", { breakdown = "MaxExplosiveArrowFuseCalculated" }, }, },
+src/Modules/CalcSections.lua:785:	{ label = "Explosions /s", haveOutput = "MaxExplosiveArrowFuseCalculated", { format = "{2:output:HitSpeed}", { breakdown = "ExplosionsPerSecond" }, }, },
+src/Modules/CalcSetup.lua:1207:					-- Calculate socket counts
+src/Modules/CalcSetup.lua:1211:					-- Loop through socket groups to calculate number of socketed gems
+src/Modules/CalcSetup.lua:1760:		-- Process calculated active skill lists
+src/Modules/CalcTools.lua:15:-- Calculate and combine INC/MORE modifiers for the given modifier names
+src/Modules/CalcTools.lua:20:---Calculates additive and multiplicative modifiers for specified modifier names
+src/Modules/CalcTools.lua:31:-- Calculate value
+src/Modules/CalcTriggers.lua:89:-- Calculate the impact other skills and source rate to trigger cooldown alignment have on the trigger rate
+src/Modules/CalcTriggers.lua:496:					t_insert(breakdown.EffectiveSourceRate, s_format("= %.2f / (%.2f + %.2f) ^8(the calculated number of exerted attacks happens every cooldown + duration)", battleMageHits, battleMageCastTime, battleMageCooldown))
+src/Modules/CalcTriggers.lua:515:					t_insert(breakdown.EffectiveSourceRate, s_format("= %.2f / (%.2f + %.2f) ^8(the calculated number of exerted attacks happens every cooldown + duration)", infernalCryHits, infernalCryCastTime, infernalCryCooldown))
+src/Modules/CalcTriggers.lua:809:				else -- Triggers like Cast on Crit go through simulation to calculate the trigger rate of each skill in the trigger group
+src/Modules/Calcs.lua:139:			-- prevent upcoming calculation from using Cached Data and thus forcing it to re-calculate new FullDPS roll-up 
+src/Modules/Common.lua:1085:		buildSites.DownloadBuild(urlText, websiteInfo, function(isSuccess, data)
+src/Modules/ConfigOptions.lua:210:	{ var = "ailmentMode", type = "list", label = "Ailment calculation mode:", tooltip = "Controls how the base damage for applying Ailments is calculated:\n\tAverage: damage is based on the average application, including both crits and non-crits\n\tCrits Only: damage is based solely on Ailments inflicted with crits", list = {{val="AVERAGE",label="Average"},{val="CRIT",label="Crits Only"}} },
+src/Modules/ConfigOptions.lua:212:	{ var = "lifeRegenMode", type = "list", label = "^xE05030Life ^7regen calculation mode:", ifCond = { "LifeRegenBurstAvg", "LifeRegenBurstFull" }, tooltip = "Controls how ^xE05030life ^7regeneration is calculated:\n\tMinimum: does not include burst regen\n\tAverage: includes burst regen, averaged based on uptime\n\tBurst: includes full burst regen", list = {{val="MIN",label="Minimum"},{val="AVERAGE",label="Average"},{val="FULL",label="Burst"}}, apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:219:	{ var = "resourceGainMode", type = "list", label = "Resource gain calculation mode:", ifCond = "AverageResourceGain", defaultIndex = 2, tooltip = "Controls how resource on hit/kill is calculated:\n\tMinimum: does not include chances\n\tAverage: includes chance gains, averaged based on uptime\n\tMaximum: treats all chances as certain", list = {{val="MIN",label="Minimum"},{val="AVERAGE",label="Average"},{val="MAX",label="Maximum"}}, apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:228:	{ var = "armourCalculationMode", type = "list", label = "Armour calculation mode:", ifCond = { "ArmourMax", "ArmourAvg" }, tooltip = "Controls how Defending with Double Armour is calculated:\n\tMinimum: never Defend with Double Armour\n\tAverage: Damage Reduction from Defending with Double Armour is proportional to chance\n\tMaximum: always Defend with Double Armour\nThis setting has no effect if you have 100% chance to Defend with Double Armour.", list = {{val="MIN",label="Minimum"},{val="AVERAGE",label="Average"},{val="MAX",label="Maximum"}}, apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:235:	{ var = "warcryMode", type = "list", label = "Exerted/Boosted calc mode:", ifSkill = { "Fist of War", "Infernal Cry", "Ancestral Cry", "Enduring Cry", "General's Cry", "Intimidating Cry", "Rallying Cry", "Seismic Cry", "Battlemage's Cry", "Vengeful Cry" }, tooltip = "Controls how exerted attacks from Warcries are calculated:\nAverage: Averages out Warcry usage with cast time, attack speed and warcry cooldown.\nMax Hit: Shows maximum hit for lining up all warcries.", list = {{val="AVERAGE",label="Average"},{val="MAX",label="Max Hit"}}, apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:240:	{ var = "pactMode", type = "list", label = "Pact calc mode:", ifSkill = { "Pact of Beidat", "Pact of Ghorr", "Pact of K'Tash", "Pact of Lycia" }, tooltip = "Controls how Empowered spells from Pacts are calculated:\nAverage: Averages the effect based on Pact uptime.\nMax Hit: Applies the full effect to one Empowered spell.", list = {{val="AVERAGE",label="Average"},{val="MAX",label="Max Hit"}}, apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:791:	{ var = "enemyRadius", type = "integer", label = "Enemy radius:", ifSkill = { "Seismic Trap", "Lightning Spire Trap", "Explosive Trap", "Molten Strike" }, includeTransfigured = true, tooltip = "Configure the radius of an enemy hitbox to calculate some area overlapping (shotgunning) effects.", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:794:	{ var = "TotalMinionLife", type = "integer", label = "Minion Life override:", ifMod = "takenFromMinionBeforeYou", tooltip = "Overrides the automatically calculated Life of the minion supported by Companionship.", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:797:	{ var = "TotalSpectreLife", type = "integer", label = "Total Spectre Life override:", ifMod = "takenFromSpectresBeforeYou", ifSkill = "Raise Spectre", includeTransfigured = true, tooltip = "Overrides the automatically calculated total Life of your Spectres that can be taken before yours (used by Jinxed Juju).", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:800:	{ var = "TotalTotemLife", type = "integer", label = "Nearest Totem Life override:", ifOption = "conditionHaveTotem", ifMod = "takenFromTotemsBeforeYou", tooltip = "Overrides the automatically calculated Life of your nearest Totem (excluding Vaal Rejuvenation Totem) that can be taken before yours (used by Totem Mastery).", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:803:	{ var = "TotalRadianceSentinelLife", type = "integer", label = "Sentinel of Radiance Life override:", ifMod = "takenFromRadianceSentinelBeforeYou", tooltip = "Overrides the automatically calculated Life of your Sentinel of Radiance that can be taken before yours.", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:806:	{ var = "TotalVoidSpawnLife", type = "integer", label = "Total Void Spawn Life override:", ifMod = "takenFromVoidSpawnBeforeYou", tooltip = "Overrides the automatically calculated total Life of your Void Spawns that can be taken before yours.", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:809:	{ var = "TotalStoneGolemLife", type = "integer", label = "Stone Golem Life override:", ifSkill = "Summon Stone Golem of Safeguarding", ifMod = "takenFromStoneGolemBeforeYou", tooltip = "Overrides the automatically calculated Life of your Stone Golem of Safeguarding that can be taken before yours.", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:812:	{ var = "TotalVaalRejuvenationTotemLife", type = "integer", label = "Vaal Rejuvenation Totem Life override:", ifSkill = "Vaal Rejuvenation Totem", ifMod = "takenFromVaalRejuvenationTotemsBeforeYou", tooltip = "Overrides the automatically calculated Life of your Vaal Rejuvenation Totem that can be taken before yours.", apply = function(val, modList, enemyModList)
+src/Modules/ConfigOptions.lua:954:	{ var = "ruthlessSupportMode", type = "list", label = "Ruthless Support Mode:", ifSkill = "Ruthless", tooltip = "Controls how the hit/ailment effect of Ruthless Support is calculated:\n\tAverage: damage is based on the average application\n\tMax Effect: damage is based on maximum effect", list = {{val="AVERAGE",label="Average"},{val="MAX",label="Max Effect"}} },
+src/Modules/ConfigOptions.lua:955:	{ var = "ChanceToIgnoreEnemyPhysicalDamageReductionMode", type = "list", label = "Chance To Ignore PDR Mode:", ifMod = "ChanceToIgnoreEnemyPhysicalDamageReduction", tooltip = "Controls how the chance on hit to ignore enemy physical damage reduction is calculated:\n\tMinimum: never ignores unless chance is at least 100%\n\tAverage: damage is based on the average application\n\tMax Effect: always ignores if you have any chance", list = {{val="MIN",label="Minimum"},{val="AVERAGE",label="Average"},{val="MAX",label="Max Effect"}}, defaultIndex = 2 },
+src/Modules/ConfigOptions.lua:2342:	{ var = "enemyPhysicalDamage", type = "countAllowZero", label = "Enemy Skill Physical Damage:", tooltip = "This overrides the default damage amount used to estimate your damage reduction from armour.\nThe default is 1.5 times the enemy's base damage, which is the same value\nused in-game to calculate the estimate shown on the character sheet.", defaultPlaceholderState = 7 },
+src/Modules/Data.lua:107:---@class Data : MiscDataExport
+src/Modules/Data.lua:282:	-- Expected values to calculate EHP
+src/Modules/Data.lua:978:Bosses' armour and evasion multiplier are calculated using the average of the boss type
+src/Modules/Main.lua:73:		buildSites.DownloadBuild(arg[1], nil, function(isSuccess, data, importLink)
+src/Modules/Main.lua:610:				if node.attrib.lastExportedWebsite then
+src/Modules/Main.lua:611:					self.lastExportedWebsite = node.attrib.lastExportedWebsite
+src/Modules/Main.lua:770:		lastExportedWebsite = self.lastExportedWebsite,
+src/Modules/ToastNotification.lua:32:-- Calculate toast height based on message content
+src/Modules/ToastNotification.lua:33:local function calculateHeight(message)
+src/Modules/ToastNotification.lua:63:		height = calculateHeight(message),
+src/Modules/ToastNotification.lua:78:			toast.height = calculateHeight(message)
+src/Classes/BuildListControl.lua:75:function BuildListClass:LoadBuild(build)
+src/Classes/BuildListControl.lua:258:		self:LoadBuild(build)
+src/Classes/BuildListControl.lua:280:		self:LoadBuild(build)
+src/Classes/CalcBreakdownControl.lua:87:			-- This also calculates the width of each column in the table
+src/Classes/CalcBreakdownControl.lua:682:	-- Calculate position based on the source cell
+src/Classes/CalcSectionControl.lua:383:	-- Calculate content height
+src/Classes/CalcsTab.lua:474:-- Controls the coroutine that calculates node power
+src/Classes/CalcsTab.lua:537:	local function calculateAddNodePower(power, distance, node, output, buildPathNodes)
+src/Classes/CalcsTab.lua:539:			power.singleStat = self:CalculatePowerStat(self.powerStat, output, calcBase)
+src/Classes/CalcsTab.lua:544:					power.pathPower = self:CalculatePowerStat(self.powerStat, calcFunc({ addNodes = buildPathNodes() }, useFullDPS), calcBase)
+src/Classes/CalcsTab.lua:548:			power.offence, power.defence = self:CalculateCombinedOffDefStat(output, calcBase)
+src/Classes/CalcsTab.lua:617:				calculateAddNodePower(node.power, distance, node, output, function()
+src/Classes/CalcsTab.lua:630:					node.power.singleStat = self:CalculatePowerStat(self.powerStat, output, calcBase)
+src/Classes/CalcsTab.lua:638:							node.power.pathPower = self:CalculatePowerStat(self.powerStat, calcFunc({ removeNodes = pathNodes }, useFullDPS), calcBase)
+src/Classes/CalcsTab.lua:678:						calculateAddNodePower(effectPower, node.pathDist, node, output, function()
+src/Classes/CalcsTab.lua:712:	-- Calculate the impact of every cluster notable
+src/Classes/CalcsTab.lua:725:				node.power.singleStat = self:CalculatePowerStat(self.powerStat, output, calcBase)
+src/Classes/CalcsTab.lua:742:function CalcsTabClass:CalculatePowerStat(selection, original, modified)
+src/Classes/CalcsTab.lua:748:function CalcsTabClass:CalculateCombinedOffDefStat(original, modified)
+src/Classes/CompareBuySimilar.lua:525:	-- Calculate popup height from final control position
+src/Classes/CompareCalcsHelpers.lua:406:	-- Calculate panel size
+src/Classes/CompareEntry.lua:78:			self:LoadBuildSection(node)
+src/Classes/CompareEntry.lua:187:function CompareEntryClass:LoadBuildSection(xml)
+src/Classes/CompareTab.lua:188:	self.comparePowerCompareId = nil      -- track which compare entry was calculated
+src/Classes/CompareTab.lua:268:			tooltip:AddLine(14, "^7Go to Import/Export Build tab and select a character first.")
+src/Classes/CompareTab.lua:997:		tooltip:AddLine(14, "Select a metric to calculate power report")
+src/Classes/CompareTab.lua:1292:-- Re-import primary build using character import (same as Import/Export tab)
+src/Classes/CompareTab.lua:1300:		importTab.controls.charImportItemsClearSkills.state = true
+src/Classes/CompareTab.lua:1301:		importTab.controls.charImportItemsClearItems.state = true
+src/Classes/CompareTab.lua:1304:		importTab.controls.charImportItems:Click()
+src/Classes/CompareTab.lua:1308:		importTab.controls.siteCharImportItemsClearSkills.state = true
+src/Classes/CompareTab.lua:1309:		importTab.controls.siteCharImportItemsClearItems.state = true
+src/Classes/CompareTab.lua:1311:		importTab.controls.siteCharImportItems:Click()
+src/Classes/CompareTab.lua:1496:				buildSites.DownloadBuild(buf, site, function(isSuccess, codeData)
+src/Classes/CompareTab.lua:1607:	function controls.buildList:LoadBuild(build)
+src/Classes/CompareTab.lua:1616:			self:LoadBuild(build)
+src/Classes/CompareTab.lua:1636:			controls.buildList:LoadBuild(sel)
+src/Classes/CompareTab.lua:2491:-- Coroutine: calculate power of compared build elements against primary build
+src/Classes/CompareTab.lua:2652:					local impact = self.primaryBuild.calcsTab:CalculatePowerStat(powerStat, output, calcBase)
+src/Classes/CompareTab.lua:2744:				local impact = self.primaryBuild.calcsTab:CalculatePowerStat(powerStat, output, calcBase)
+src/Classes/CompareTab.lua:2825:					bestImpactVal = self.primaryBuild.calcsTab:CalculatePowerStat(powerStat, output, calcBase)
+src/Classes/CompareTab.lua:2836:						local impact = self.primaryBuild.calcsTab:CalculatePowerStat(powerStat, output, calcBase)
+src/Classes/CompareTab.lua:2891:				-- Temporarily add this socket group to primary build and recalculate
+src/Classes/CompareTab.lua:2908:					local impact = self.primaryBuild.calcsTab:CalculatePowerStat(powerStat, gemCalcBase, calcBase)
+src/Classes/CompareTab.lua:2990:							local impact = self.primaryBuild.calcsTab:CalculatePowerStat(powerStat, sgCalcBase, calcBase)
+src/Classes/CompareTab.lua:3045:					-- Rebuild and calculate (pcall to guarantee restore on error)
+src/Classes/CompareTab.lua:3061:						local impact = self.primaryBuild.calcsTab:CalculatePowerStat(powerStat, cfgCalcBase, calcBase)
+src/Classes/CompareTab.lua:4731:				-- Calculate card height
+src/Classes/ExtBuildListControl.lua:284:	-- remove import/export buttons.
+src/Classes/GemSelectControl.lua:100:	-- Calculate the impact of using this gem
+src/Classes/ImportTab.lua:4:-- Import/Export tab for the current build.
+src/Classes/ImportTab.lua:259:					self:ImportPassiveTreeAndJewels(data.character, deleteJewels)
+src/Classes/ImportTab.lua:285:	self.controls.charImportItems = new("ButtonControl"):ButtonControl({ "TOPLEFT", self.controls.charImportTree, "BOTTOMLEFT" },
+src/Classes/ImportTab.lua:295:				local clearItems = self.controls.charImportItemsClearItems.state
+src/Classes/ImportTab.lua:296:				local clearSkills = self.controls.charImportItemsClearSkills.state
+src/Classes/ImportTab.lua:297:				local ignoreWeaponSwap = self.controls.charImportItemsIgnoreWeaponSwap.state
+src/Classes/ImportTab.lua:300:					self:ImportItemsAndSkills(data.character, clearItems, clearSkills, ignoreWeaponSwap)
+src/Classes/ImportTab.lua:311:	self.controls.charImportItems.enabled = function()
+src/Classes/ImportTab.lua:314:	self.controls.charImportItemsClearSkills = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.charImportItems, "RIGHT" },
+src/Classes/ImportTab.lua:316:	self.controls.charImportItemsClearItems = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.charImportItems, "RIGHT" },
+src/Classes/ImportTab.lua:318:	self.controls.charImportItemsIgnoreWeaponSwap = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.charImportItems,
+src/Classes/ImportTab.lua:446:	self.controls.siteCharImportItems = new("ButtonControl"):ButtonControl({ "LEFT", self.controls.siteCharImportTree, "LEFT" },
+src/Classes/ImportTab.lua:452:	self.controls.siteCharImportItems.enabled = function()
+src/Classes/ImportTab.lua:455:	self.controls.siteCharImportItemsClearSkills = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.siteCharImportItems, "RIGHT" },
+src/Classes/ImportTab.lua:457:	self.controls.siteCharImportItemsClearItems = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.siteCharImportItems, "RIGHT" },
+src/Classes/ImportTab.lua:459:	self.controls.siteCharImportItemsIgnoreWeaponSwap = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.siteCharImportItems,
+src/Classes/ImportTab.lua:498:	-- Build import/export
+src/Classes/ImportTab.lua:504:		self.controls.generateCodeOut:SetText(common.base64.encode(Deflate(self.build:SaveDB("code"))):gsub("+","-"):gsub("/","_"))
+src/Classes/ImportTab.lua:506:	self.controls.enablePartyExportBuffs = new("CheckBoxControl"):CheckBoxControl({"LEFT",self.controls.generateCode,"RIGHT"}, {100, 0, 18}, "Export Support", function(state)
+src/Classes/ImportTab.lua:507:		self.build.partyTab.enableExportBuffs = state
+src/Classes/ImportTab.lua:509:	end, "This is for party play, to export support character, it enables the exporting of auras, curses and modifiers to the enemy", false)
+src/Classes/ImportTab.lua:522:	local getExportSitesFromImportList = function()
+src/Classes/ImportTab.lua:523:		local exportWebsites = { }
+src/Classes/ImportTab.lua:525:			-- if entry has fields needed for Export
+src/Classes/ImportTab.lua:527:				table.insert(exportWebsites, v)
+src/Classes/ImportTab.lua:530:		return exportWebsites
+src/Classes/ImportTab.lua:532:	local exportWebsitesList = getExportSitesFromImportList()
+src/Classes/ImportTab.lua:534:	self.controls.exportFrom = new("DropDownControl"):DropDownControl({ "LEFT", self.controls.generateCodeCopy, "RIGHT" }, { 8, 0, 120, 20 }, exportWebsitesList, function(_, selectedWebsite)
+src/Classes/ImportTab.lua:535:		main.lastExportWebsite = selectedWebsite.id
+src/Classes/ImportTab.lua:536:		self.exportWebsiteSelected = selectedWebsite.id
+src/Classes/ImportTab.lua:538:	self.controls.exportFrom:SelByValue(self.exportWebsiteSelected or main.lastExportWebsite or "Pastebin", "id")
+src/Classes/ImportTab.lua:539:	self.controls.generateCodeByLink = new("ButtonControl"):ButtonControl({ "LEFT", self.controls.exportFrom, "RIGHT" }, { 8, 0, 100, 20 }, "Share", function()
+src/Classes/ImportTab.lua:540:		local exportWebsite = exportWebsitesList[self.controls.exportFrom.selIndex]
+src/Classes/ImportTab.lua:541:		local subScriptId = buildSites.UploadBuild(self.controls.generateCodeOut.buf, exportWebsite)
+src/Classes/ImportTab.lua:548:					main:OpenMessagePopup(exportWebsite.id, "Error creating link:\n"..errMsg)
+src/Classes/ImportTab.lua:550:					self.controls.generateCodeOut:SetText(exportWebsite.codeOut..pasteLink)
+src/Classes/ImportTab.lua:556:		for _, exportSite in ipairs(exportWebsitesList) do
+src/Classes/ImportTab.lua:557:			if #self.controls.generateCodeOut.buf > 0 and self.controls.generateCodeOut.buf:match(exportSite.matchURL) then
+src/Classes/ImportTab.lua:563:	self.controls.exportFrom.enabled = function()
+src/Classes/ImportTab.lua:564:		for _, exportSite in ipairs(exportWebsitesList) do
+src/Classes/ImportTab.lua:565:			if #self.controls.generateCodeOut.buf > 0 and self.controls.generateCodeOut.buf:match(exportSite.matchURL) then
+src/Classes/ImportTab.lua:688:			buildSites.DownloadBuild(self.controls.importCodeIn.buf, selectedWebsite, function(isSuccess, data)
+src/Classes/ImportTab.lua:702:			self:ImportItemsAndSkills(self.importCodeJson, true, true, false)
+src/Classes/ImportTab.lua:703:			self:ImportPassiveTreeAndJewels(self.importCodeJson, true)
+src/Classes/ImportTab.lua:746:	self.controls.enablePartyExportBuffs.state = xml.attrib.exportParty == "true"
+src/Classes/ImportTab.lua:747:	self.build.partyTab.enableExportBuffs = self.controls.enablePartyExportBuffs.state
+src/Classes/ImportTab.lua:764:		exportParty = tostring(self.controls.enablePartyExportBuffs.state),
+src/Classes/ImportTab.lua:847:			self:ImportPassiveTreeAndJewels(charData, deleteJewels)
+src/Classes/ImportTab.lua:880:			local clearItems = self.controls.siteCharImportItemsClearItems.state
+src/Classes/ImportTab.lua:881:			local clearSkills = self.controls.siteCharImportItemsClearSkills.state
+src/Classes/ImportTab.lua:882:			local ignoreWeaponSwap = self.controls.siteCharImportItemsIgnoreWeaponSwap.state
+src/Classes/ImportTab.lua:883:			self:ImportItemsAndSkills(charData, clearItems, clearSkills, ignoreWeaponSwap)
+src/Classes/ImportTab.lua:1130:function ImportTabClass:ImportPassiveTreeAndJewels(charData, deleteJewels)
+src/Classes/ImportTab.lua:1380:function ImportTabClass:ImportItemsAndSkills(charData, clearItems, clearSkills, ignoreWeaponSwap)
+src/Classes/Item.lua:2149:-- Calculate local modifiers, and removes them from the modifier list
+src/Classes/ItemsTab.lua:4830:				-- This is also the reason why this value needs a separate multiplier and cannot just be calculated into FlaskLifeRecovery.
+src/Classes/NotableDBControl.lua:116:function NotableDBClass:CalculatePowerStat(selection, original, modified)
+src/Classes/NotableDBControl.lua:142:				node.measuredPower = self:CalculatePowerStat(self.sortDetail, output, calcBase)
+src/Classes/PartyTab.lua:25:	self.buffExports = { }
+src/Classes/PartyTab.lua:26:	self.enableExportBuffs = false
+src/Classes/PartyTab.lua:35:		EnableExportBuffs = false,
+src/Classes/PartyTab.lua:63:	local notesDesc = [[^7To import a build it must be exported with "Export support" enabled in the import/export tab
+src/Classes/PartyTab.lua:209:					if node.elem == "ExportedBuffs" then
+src/Classes/PartyTab.lua:301:	self.controls.importCodeDestination.tooltipText = "Destination for Import/clear\nCurrently Links Skills do not export"
+src/Classes/PartyTab.lua:307:			buildSites.DownloadBuild(self.controls.importCodeIn.buf, selectedWebsite, function(isSuccess, data)
+src/Classes/PartyTab.lua:348:	end, "This shows the advanced info like what stats each aura/curse etc are adding, as well as enables the ability to edit them without a re-export\nDo not edit any boxes unless you know what you are doing, use copy/paste or import instead", false)
+src/Classes/PartyTab.lua:543:		elseif node.elem == "ExportedBuffs" then
+src/Classes/PartyTab.lua:548:			---	self:ParseBuffs(self.buffExports, node[1] or "", node.attrib.name)
+src/Classes/PartyTab.lua:550:			--self:ParseBuffs(self.buffExports, node[1] or "", "PartyMemberStats")
+src/Classes/PartyTab.lua:551:			--self:ParseBuffs(self.buffExports, node[1] or "", "Aura")
+src/Classes/PartyTab.lua:552:			--self:ParseBuffs(self.buffExports, node[1] or "", "Curse")
+src/Classes/PartyTab.lua:553:			--self:ParseBuffs(self.buffExports, node[1] or "", "Warcry")
+src/Classes/PartyTab.lua:554:			--self:ParseBuffs(self.buffExports, node[1] or "", "Link")
+src/Classes/PartyTab.lua:555:			--self:ParseBuffs(self.buffExports, node[1] or "", "EnemyConditions")
+src/Classes/PartyTab.lua:556:			--self:ParseBuffs(self.buffExports, node[1] or "", "EnemyMods")
+src/Classes/PartyTab.lua:566:	self.lastContent.EnableExportBuffs = self.enableExportBuffs
+src/Classes/PartyTab.lua:612:	local exportString = self:exportBuffs("PlayerMods")
+src/Classes/PartyTab.lua:613:	if exportString ~= "" then
+src/Classes/PartyTab.lua:614:		child = { elem = "ExportedBuffs", attrib = { name = "PartyMemberStats" } }
+src/Classes/PartyTab.lua:615:		t_insert(child, exportString)
+src/Classes/PartyTab.lua:618:	exportString = self:exportBuffs("Aura")
+src/Classes/PartyTab.lua:619:	if exportString ~= "" then
+src/Classes/PartyTab.lua:620:		child = { elem = "ExportedBuffs", attrib = { name = "Aura" } }
+src/Classes/PartyTab.lua:621:		t_insert(child, exportString)
+src/Classes/PartyTab.lua:624:	exportString = self:exportBuffs("Curse")
+src/Classes/PartyTab.lua:625:	if exportString ~= "" then
+src/Classes/PartyTab.lua:626:		child = { elem = "ExportedBuffs", attrib = { name = "Curse" } }
+src/Classes/PartyTab.lua:627:		t_insert(child, exportString)
+src/Classes/PartyTab.lua:630:	exportString = self:exportBuffs("Warcry")
+src/Classes/PartyTab.lua:631:	if exportString ~= "" then
+src/Classes/PartyTab.lua:632:		child = { elem = "ExportedBuffs", attrib = { name = "Warcry Skills" } }
+src/Classes/PartyTab.lua:633:		t_insert(child, exportString)
+src/Classes/PartyTab.lua:636:	exportString = self:exportBuffs("Link")
+src/Classes/PartyTab.lua:637:	if exportString ~= "" then
+src/Classes/PartyTab.lua:638:		child = { elem = "ExportedBuffs", attrib = { name = "Link Skills" } }
+src/Classes/PartyTab.lua:639:		t_insert(child, exportString)
+src/Classes/PartyTab.lua:642:	exportString = self:exportBuffs("EnemyConditions")
+src/Classes/PartyTab.lua:643:	if exportString ~= "" then
+src/Classes/PartyTab.lua:644:		child = { elem = "ExportedBuffs", attrib = { name = "EnemyConditions" } }
+src/Classes/PartyTab.lua:645:		t_insert(child, exportString)
+src/Classes/PartyTab.lua:648:	exportString = self:exportBuffs("EnemyMods")
+src/Classes/PartyTab.lua:649:	if exportString ~= "" then

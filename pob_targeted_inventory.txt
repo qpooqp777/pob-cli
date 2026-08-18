@@ -1,0 +1,669 @@
+--- Build.lua ---
+		wipeTable(req)
+	end
+end
+
+function buildMode:LoadDB(xmlText, fileName)
+	-- Parse the XML
+	local dbXML, errMsg = common.xml.ParseXML(xmlText)
+	if errMsg and errMsg:match(".*file returns nil") then
+		main:OpenCloudErrorPopup(fileName)
+		return true
+	elseif errMsg then
+		launch:ShowErrMsg("^1"..errMsg)
+		return true
+	elseif dbXML[1].elem ~= "PathOfBuilding" then
+		launch:ShowErrMsg("^1Error parsing '%s': 'PathOfBuilding' root element missing", fileName)
+		return true
+	end
+
+	-- Load Build section first
+	for _, node in ipairs(dbXML[1]) do
+		if type(node) == "table" and node.elem == "Build" then
+			self:Load(node, self.dbFileName)
+			break
+		end
+	end
+
+	-- Check if xml has an import link
+	for _, node in ipairs(dbXML[1]) do
+		if type(node) == "table" and node.elem == "Import" then
+			if node.attrib.importLink and not self.importLink then
+				self.importLink = node.attrib.importLink
+			end
+			break
+		end
+	end
+
+	-- Store other sections for later processing
+	for _, node in ipairs(dbXML[1]) do
+		if type(node) == "table" then
+			t_insert(self.xmlSectionList, node)
+		end
+	end
+end
+
+function buildMode:LoadDBFile()
+	if not self.dbFileName then
+		return
+	end
+	ConPrintf("Loading '%s'...", self.dbFileName)
+	local file = io.open(self.dbFileName, "r")
+	if not file then
+		self.dbFileName = nil
+		return true
+	end
+	local xmlText = file:read("*a")
+	file:close()
+	return self:LoadDB(xmlText, self.dbFileName)
+end
+
+function buildMode:SaveDB(fileName)
+	local dbXML = { elem = "PathOfBuilding" }
+
+	-- Save Build section first
+	do
+		local node = { elem = "Build" }
+		self:Save(node)
+		t_insert(dbXML, node)
+	end
+
+	-- Call on all savers to save their data in their respective sections
+	for elem, saver in pairs(self.savers) do
+		local node = { elem = elem }
+		saver:Save(node)
+		t_insert(dbXML, node)
+	end
+
+	-- Compose the XML
+	local xmlText, errMsg = common.xml.ComposeXML(dbXML)
+	if not xmlText then
+		launch:ShowErrMsg("Error saving '%s': %s", fileName, errMsg)
+	else
+		return xmlText
+	end
+end
+
+
+function buildMode:SaveDBFile()
+	if not self.dbFileName then
+		self:OpenSaveAsPopup()
+		return
+	end
+	local xmlText = self:SaveDB(self.dbFileName)
+	if not xmlText then
+		return true
+	end
+	local file = io.open(self.dbFileName, "w+")
+	if not file then
+		main:OpenMessagePopup("Error", "Couldn't save the build file:\n"..self.dbFileName.."\nMake sure the save folder exists and is writable.")
+		return true
+	end
+	file:write(xmlText)
+	file:close()
+	local action = self.actionOnSave
+	self.actionOnSave = nil
+
+	-- Reset all modFlags
+--- Calcs.lua ---
+15:calcs.breakdownModule = "Modules/CalcBreakdown"
+25:function math.average(t)
+76:	local env, cachedPlayerDB, cachedEnemyDB, cachedMinionDB = calcs.initEnv(build, "CALCULATOR")
+79:	calcs.perform(env)
+80:	local fullDPS = calcs.calcFullDPS(build, "CALCULATOR", {}, { cachedPlayerDB = cachedPlayerDB, cachedEnemyDB = cachedEnemyDB, cachedMinionDB = cachedMinionDB, env = nil })
+105:		calcs.perform(env)
+106:		fullDPS = calcs.calcFullDPS(build, "CALCULATOR", {}, { cachedPlayerDB = cachedPlayerDB, cachedEnemyDB = cachedEnemyDB, cachedMinionDB = cachedMinionDB, env = nil})
+116:function calcs.getNodeCalculator(build)
+119:		env.modDB:AddList(calcs.buildModListForNodeList(env, nodeList))
+124:function calcs.getMiscCalculator(build)
+126:	local env, cachedPlayerDB, cachedEnemyDB, cachedMinionDB = calcs.initEnv(build, "CALCULATOR")
+127:	calcs.perform(env)
+128:	local fullDPS = calcs.calcFullDPS(build, "CALCULATOR", {}, { cachedPlayerDB = cachedPlayerDB, cachedEnemyDB = cachedEnemyDB, cachedMinionDB = cachedMinionDB, env = nil})
+136:		local env, cachedPlayerDB, cachedEnemyDB, cachedMinionDB = calcs.initEnv(build, "CALCULATOR", override)
+137:		calcs.perform(env)
+142:			local fullDPS = calcs.calcFullDPS(build, "CALCULATOR", override, { cachedPlayerDB = cachedPlayerDB, cachedEnemyDB = cachedEnemyDB, cachedMinionDB = cachedMinionDB, env = nil})
+177:function calcs.calcFullDPS(build, mode, override, specEnv)
+178:	local fullEnv, cachedPlayerDB, cachedEnemyDB, cachedMinionDB = calcs.initEnv(build, mode, override, specEnv)
+208:				calcs.perform(fullEnv, true)
+336:				fullEnv, _, _, _ = calcs.initEnv(build, mode, override, { cachedPlayerDB = cachedPlayerDB, cachedEnemyDB = cachedEnemyDB, cachedMinionDB = cachedMinionDB, env = fullEnv, accelerate = accelerationTbl })
+392:function calcs.buildActiveSkill(env, mode, skill, targetUUID, limitedProcessingFlags)
+393:	local fullEnv, _, _, _ = calcs.initEnv(env.build, mode, env.override)
+410:			calcs.perform(fullEnv, true)
+414:	ConPrintf("[calcs.buildActiveSkill] Failed to process skill: " .. skill.activeEffect.grantedEffect.name)
+418:function calcs.buildOutput(build, mode)
+420:	local env, cachedPlayerDB, cachedEnemyDB, cachedMinionDB = calcs.initEnv(build, mode)
+421:	calcs.perform(env)
+426:	local fullDPS = calcs.calcFullDPS(build, "CALCULATOR", {}, { cachedPlayerDB = cachedPlayerDB, cachedEnemyDB = cachedEnemyDB, cachedMinionDB = cachedMinionDB, env = nil })
+437:				calcs.buildActiveSkill(env, mode, skill, uuid)
+--- CompareTab ---
+src/Classes/CompareTab.lua:3:-- Module: Compare Tab
+src/Classes/CompareTab.lua:12:local tradeHelpers = LoadModule("Classes/TradeHelpers")
+src/Classes/CompareTab.lua:13:local buySimilar = LoadModule("Classes/CompareBuySimilar")
+src/Classes/CompareTab.lua:14:local calcsHelpers = LoadModule("Classes/CompareCalcsHelpers")
+src/Classes/CompareTab.lua:15:local buildListHelpers = LoadModule("Modules/BuildListHelpers")
+src/Classes/CompareTab.lua:16:local itemSlotHelper = LoadModule("Modules/ItemSlotHelper")
+src/Classes/CompareTab.lua:17:local configVisibility = LoadModule("Modules/ConfigVisibility")
+src/Classes/CompareTab.lua:79:	calcsMaxCardWidth = 400,
+src/Classes/CompareTab.lua:80:	calcsLabelWidth = 132,
+src/Classes/CompareTab.lua:81:	calcsSepW = 2,
+src/Classes/CompareTab.lua:82:	calcsHeaderBarHeight = 12,
+src/Classes/CompareTab.lua:125:---@class CompareTab: ControlHost, Control
+src/Classes/CompareTab.lua:126:local CompareTabClass = newClass("CompareTab", "ControlHost", "Control")
+src/Classes/CompareTab.lua:129:function CompareTabClass:CompareTab(primaryBuild)
+src/Classes/CompareTab.lua:137:	self.activeCompareIndex = 0
+src/Classes/CompareTab.lua:167:	-- Tooltip for calcs hover breakdown
+src/Classes/CompareTab.lua:168:	self.calcsTooltip = new("Tooltip"):Tooltip()
+src/Classes/CompareTab.lua:169:	self.calcsShowOnlyDifferences = true
+src/Classes/CompareTab.lua:175:	self.configCompareId = nil      -- track which compare entry controls were built for
+src/Classes/CompareTab.lua:181:	-- Compare power report state
+src/Classes/CompareTab.lua:187:	self.comparePowerDirty = false        -- flag to restart calculation
+src/Classes/CompareTab.lua:188:	self.comparePowerCompareId = nil      -- track which compare entry was calculated
+src/Classes/CompareTab.lua:191:	self.configOptions = LoadModule("Modules/ConfigOptions")
+src/Classes/CompareTab.lua:192:	self.calcSections = LoadModule("Modules/CalcSections")
+src/Classes/CompareTab.lua:193:	self.calcs = LoadModule("Modules/Calcs")
+src/Classes/CompareTab.lua:200:function CompareTabClass:InitControls()
+src/Classes/CompareTab.lua:233:	self.controls.compareBuildLabel = new("LabelControl"):LabelControl({"TOPLEFT", self.controls.subTabAnchor, "TOPLEFT"}, {0, -88, 0, 16}, "^7Compare with:")
+src/Classes/CompareTab.lua:236:			self.activeCompareIndex = index
+src/Classes/CompareTab.lua:280:		if self.activeCompareIndex > 0 and self.activeCompareIndex <= #self.compareEntries then
+src/Classes/CompareTab.lua:281:			self:RemoveBuild(self.activeCompareIndex)
+src/Classes/CompareTab.lua:299:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:316:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:326:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:336:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:358:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:370:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:384:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:405:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:426:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:444:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:469:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:488:	local calcsBuffModeDropList = {
+src/Classes/CompareTab.lua:494:	-- Primary build calcs skill controls
+src/Classes/CompareTab.lua:496:		self.primaryBuild.calcsTab.input.skill_number = index
+src/Classes/CompareTab.lua:504:		local mainSocketGroup = self.primaryBuild.skillsTab.socketGroupList[self.primaryBuild.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:513:		local mainSocketGroup = self.primaryBuild.skillsTab.socketGroupList[self.primaryBuild.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:526:		local mainSocketGroup = self.primaryBuild.skillsTab.socketGroupList[self.primaryBuild.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:539:		local mainSocketGroup = self.primaryBuild.skillsTab.socketGroupList[self.primaryBuild.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:552:		self.primaryBuild.calcsTab.input.showMinion = state
+src/Classes/CompareTab.lua:558:		local mainSocketGroup = self.primaryBuild.skillsTab.socketGroupList[self.primaryBuild.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:578:		local mainSocketGroup = self.primaryBuild.skillsTab.socketGroupList[self.primaryBuild.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:590:	self.controls.primCalcsMode = new("DropDownControl"):DropDownControl(nil, {0, 0, 120, 18}, calcsBuffModeDropList, function(index, value)
+src/Classes/CompareTab.lua:591:		self.primaryBuild.calcsTab.input.misc_buffMode = value.buffMode
+src/Classes/CompareTab.lua:596:	-- Compare build calcs skill controls
+src/Classes/CompareTab.lua:598:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:600:			entry.calcsTab.input.skill_number = index
+src/Classes/CompareTab.lua:609:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:611:			local mainSocketGroup = entry.skillsTab.socketGroupList[entry.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:621:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:623:			local mainSocketGroup = entry.skillsTab.socketGroupList[entry.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:637:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:639:			local mainSocketGroup = entry.skillsTab.socketGroupList[entry.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:653:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:655:			local mainSocketGroup = entry.skillsTab.socketGroupList[entry.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:669:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:671:			entry.calcsTab.input.showMinion = state
+src/Classes/CompareTab.lua:678:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:680:			local mainSocketGroup = entry.skillsTab.socketGroupList[entry.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:701:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:703:			local mainSocketGroup = entry.skillsTab.socketGroupList[entry.calcsTab.input.skill_number]
+src/Classes/CompareTab.lua:716:	self.controls.cmpCalcsMode = new("DropDownControl"):DropDownControl(nil, {0, 0, 120, 18}, calcsBuffModeDropList, function(index, value)
+src/Classes/CompareTab.lua:717:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:719:			entry.calcsTab.input.misc_buffMode = value.buffMode
+src/Classes/CompareTab.lua:725:	self.controls.calcsShowOnlyDifferencesCheck = new("CheckBoxControl"):CheckBoxControl(nil, {0, 0, 18}, "Show only differences", function(state)
+src/Classes/CompareTab.lua:726:		self.calcsShowOnlyDifferences = state
+src/Classes/CompareTab.lua:728:	self.controls.calcsShowOnlyDifferencesCheck.shown = function()
+src/Classes/CompareTab.lua:729:		return self.compareViewMode == "CALCS" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:736:		return self.compareViewMode == "TREE" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:739:		return self.compareViewMode == "TREE" and self:GetActiveCompare() ~= nil and not self.treeOverlayMode
+src/Classes/CompareTab.lua:768:		return self.compareViewMode == "TREE" and self:GetActiveCompare() ~= nil and self.treeOverlayMode
+src/Classes/CompareTab.lua:777:		return self.compareViewMode == "ITEMS" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:782:		return self.compareViewMode == "ITEMS" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:799:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:825:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:872:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:886:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:897:		self:CopyCompareSpecToPrimary(false)
+src/Classes/CompareTab.lua:901:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:906:		self:CopyCompareSpecToPrimary(true)
+src/Classes/CompareTab.lua:913:		local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:920:	-- Config view: "Copy Config from Compare Build" button
+src/Classes/CompareTab.lua:922:		"Copy Config from Compare Build",
+src/Classes/CompareTab.lua:923:		function() self:CopyCompareConfig() end)
+src/Classes/CompareTab.lua:925:		return self.compareViewMode == "CONFIG" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:937:		return self.compareViewMode == "CONFIG" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:943:		return self.compareViewMode == "CONFIG" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:948:		return self.compareViewMode == "CONFIG" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:967:	-- Compare Power Report controls (Summary view)
+src/Classes/CompareTab.lua:997:		tooltip:AddLine(14, "Select a metric to calculate power report")
+src/Classes/CompareTab.lua:1037:	self.controls.comparePowerReportList = new("ComparePowerReportListControl"):ComparePowerReportListControl(nil, {0, 0, 750, 250})
+src/Classes/CompareTab.lua:1042:	self.controls.calcsScrollBar = new("ScrollBarControl"):ScrollBarControl(nil, {0, 0, 18, 0}, 50, "VERTICAL", true)
+src/Classes/CompareTab.lua:1043:	local calcsScrollBar = self.controls.calcsScrollBar
+src/Classes/CompareTab.lua:1044:	self.controls.calcsScrollBar.shown = function()
+src/Classes/CompareTab.lua:1045:		return self.compareViewMode == "CALCS" and self:GetActiveCompare() ~= nil and calcsScrollBar.enabled
+src/Classes/CompareTab.lua:1052:		return self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:1062:		return self.compareViewMode == "ITEMS" and self:GetActiveCompare() ~= nil and itemsHScrollBar.enabled
+src/Classes/CompareTab.lua:1069:		return self.compareViewMode == "SKILLS" and self:GetActiveCompare() ~= nil and skillsHScrollBar.enabled
+src/Classes/CompareTab.lua:1074:function CompareTabClass:GetShortBuildName(fullName)
+src/Classes/CompareTab.lua:1087:function CompareTabClass:PopulateSetDropdown(tab, orderListField, setsField, activeIdField, control)
+src/Classes/CompareTab.lua:1105:function CompareTabClass:FormatConfigValue(varData, val)
+src/Classes/CompareTab.lua:1123:function CompareTabClass:NormalizeConfigVals(varData, pVal, cVal)
+src/Classes/CompareTab.lua:1179:function CompareTabClass:RebuildConfigControls(compareEntry)
+src/Classes/CompareTab.lua:1199:			-- Skip sections not relevant in Compare view
+src/Classes/CompareTab.lua:1231:function CompareTabClass:CopyCompareConfig()
+src/Classes/CompareTab.lua:1232:	local compareEntry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:1245:function CompareTabClass:ImportBuild(xmlText, label)
+src/Classes/CompareTab.lua:1246:	local entry = new("CompareEntry"):CompareEntry(xmlText, label)
+src/Classes/CompareTab.lua:1247:	if entry and entry.calcsTab and entry.calcsTab.mainOutput then
+src/Classes/CompareTab.lua:1249:		self.activeCompareIndex = #self.compareEntries
+src/Classes/CompareTab.lua:1261:function CompareTabClass:ImportFromCode(code)
+src/Classes/CompareTab.lua:1273:function CompareTabClass:RemoveBuild(index)
+src/Classes/CompareTab.lua:1276:		if self.activeCompareIndex > #self.compareEntries then
+src/Classes/CompareTab.lua:1277:			self.activeCompareIndex = #self.compareEntries
+src/Classes/CompareTab.lua:1279:		if self.activeCompareIndex == 0 and #self.compareEntries > 0 then
+src/Classes/CompareTab.lua:1280:			self.activeCompareIndex = 1
+src/Classes/CompareTab.lua:1293:function CompareTabClass:ReimportPrimary()
+src/Classes/CompareTab.lua:1316:function CompareTabClass:UpdateBuildSelector()
+src/Classes/CompareTab.lua:1322:	if self.activeCompareIndex > 0 and self.activeCompareIndex <= #list then
+src/Classes/CompareTab.lua:1323:		self.controls.compareBuildSelect.selIndex = self.activeCompareIndex
+src/Classes/CompareTab.lua:1328:function CompareTabClass:GetActiveCompare()
+src/Classes/CompareTab.lua:1329:	if self.activeCompareIndex > 0 and self.activeCompareIndex <= #self.compareEntries then
+src/Classes/CompareTab.lua:1330:		return self.compareEntries[self.activeCompareIndex]
+src/Classes/CompareTab.lua:1336:function CompareTabClass:CopyCompareSpecToPrimary(andUse)
+src/Classes/CompareTab.lua:1337:	local entry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:1348:	newSpec.title = (sourceSpec.title or "Default") .. " (Compared)"
+src/Classes/CompareTab.lua:1377:function CompareTabClass:GetJewelComparisonSlots(compareEntry)
+src/Classes/CompareTab.lua:1444:function CompareTabClass:CopyCompareItemToPrimary(slotName, compareEntry, andUse)
+src/Classes/CompareTab.lua:1467:function CompareTabClass:OpenImportPopup()
+src/Classes/CompareTab.lua:1534:function CompareTabClass:OpenImportFolderPopup()
+src/Classes/CompareTab.lua:1607:	function controls.buildList:LoadBuild(build)
+src/Classes/CompareTab.lua:1616:			self:LoadBuild(build)
+src/Classes/CompareTab.lua:1636:			controls.buildList:LoadBuild(sel)
+src/Classes/CompareTab.lua:1650:function CompareTabClass:Draw(viewPort, inputEvents)
+src/Classes/CompareTab.lua:1676:	local compareEntry = self:GetActiveCompare()
+src/Classes/CompareTab.lua:1697:	-- Layout and refresh calcs skill detail controls
+src/Classes/CompareTab.lua:1698:	self.calcsSkillHeaderHeight = 0
+src/Classes/CompareTab.lua:1700:		self.calcsSkillHeaderHeight = self:LayoutCalcsSkillControls(contentVP, compareEntry)
+src/Classes/CompareTab.lua:1703:	-- Draw calcs skill header background
+src/Classes/CompareTab.lua:1704:	if self.compareViewMode == "CALCS" and self.calcsSkillHeaderHeight > 0 then
+src/Classes/CompareTab.lua:1706:		DrawImage(nil, contentVP.x, contentVP.y, contentVP.width, self.calcsSkillHeaderHeight)
+src/Classes/CompareTab.lua:1777:			colorCodes.WARNING .. (compareEntry.label or "Compare Build"))
+src/Classes/CompareTab.lua:1810:			-- Compare build item set dropdown
+src/Classes/CompareTab.lua:1820:				colorCodes.WARNING .. (compareEntry.label or "Compare Build"))
+src/Classes/CompareTab.lua:1864:function CompareTabClass:LayoutTreeView(contentVP, compareEntry)
+src/Classes/CompareTab.lua:2026:function CompareTabClass:LayoutConfigView(contentVP, compareEntry)
+src/Classes/CompareTab.lua:2030:	if self.configCompareId ~= self.activeCompareIndex or self.configNeedsRebuild then
+src/Classes/CompareTab.lua:2032:		self.configCompareId = self.activeCompareIndex
+src/Classes/CompareTab.lua:2191:					and self.compareViewMode == "CONFIG" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:2204:function CompareTabClass:UpdateSetSelectors(compareEntry)
+src/Classes/CompareTab.lua:2237:-- Refresh calcs skill detail controls for both builds.
+src/Classes/CompareTab.lua:2238:function CompareTabClass:RefreshCalcsSkillControls(compareEntry)
+src/Classes/CompareTab.lua:2250:	self.primaryBuild:RefreshSkillSelectControls(primControls, self.primaryBuild.calcsTab.input.skill_number, "Calcs")
+src/Classes/CompareTab.lua:2253:	self.controls.primCalcsMode:SelByValue(self.primaryBuild.calcsTab.input.misc_buffMode, "buffMode")
+src/Classes/CompareTab.lua:2255:	self.controls.primCalcsShowMinion.state = self.primaryBuild.calcsTab.input.showMinion and true or false
+src/Classes/CompareTab.lua:2267:	compareEntry:RefreshSkillSelectControls(cmpControls, compareEntry.calcsTab.input.skill_number, "Calcs")
+src/Classes/CompareTab.lua:2270:	self.controls.cmpCalcsMode:SelByValue(compareEntry.calcsTab.input.misc_buffMode, "buffMode")
+src/Classes/CompareTab.lua:2272:	self.controls.cmpCalcsShowMinion.state = compareEntry.calcsTab.input.showMinion and true or false
+src/Classes/CompareTab.lua:2276:	local calcsControlNames = {
+src/Classes/CompareTab.lua:2284:	for _, name in ipairs(calcsControlNames) do
+src/Classes/CompareTab.lua:2289:				return self.compareViewMode == "CALCS" and self:GetActiveCompare() ~= nil
+src/Classes/CompareTab.lua:2296:-- Layout calcs skill detail controls into a two-column header area
+src/Classes/CompareTab.lua:2297:function CompareTabClass:LayoutCalcsSkillControls(vp, compareEntry)
+src/Classes/CompareTab.lua:2332:	local calcsRows = {
+src/Classes/CompareTab.lua:2343:	for _, row in ipairs(calcsRows) do
+src/Classes/CompareTab.lua:2354:	local primaryEnv = self.primaryBuild.calcsTab and self.primaryBuild.calcsTab.calcsEnv
+src/Classes/CompareTab.lua:2355:	local compareEnv = compareEntry.calcsTab and compareEntry.calcsTab.calcsEnv
+src/Classes/CompareTab.lua:2380:	local showOnlyDiffCheck = self.controls.calcsShowOnlyDifferencesCheck
+src/Classes/CompareTab.lua:2381:	showOnlyDiffCheck.state = self.calcsShowOnlyDifferences and true or false
+src/Classes/CompareTab.lua:2388:function CompareTabClass:HandleScrollInput(contentVP, inputEvents)
+src/Classes/CompareTab.lua:2401:					self.controls.calcsScrollBar:Scroll(-1)
+--- ImportTab ---
+3:-- Module: Import Tab
+4:-- Import/Export tab for the current build.
+47:	local function charImportStatus()
+66:			return fetchButtonEnabled() and "Fetching..." or "Importing..."
+79:	self.controls.charImportStatusLabel = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.sectionOauthCharImport, "TOPLEFT" },
+81:			return "^7Character import status: " .. charImportStatus()
+84:	self.controls.logoutApiButton = new("ButtonControl"):ButtonControl({ "TOPLEFT", self.controls.charImportStatusLabel, "TOPRIGHT" },
+91:	self.controls.characterImportAnchor = new("Control"):Control({ "TOPLEFT", self.controls.sectionOauthCharImport, "TOPLEFT" },
+93:	self.controls.sectionOauthCharImport.height = function()
+160:		main.api:DownloadCharacterList(realm.realmCode, onResponse)
+163:	self.controls.authenticateButton = new("ButtonControl"):ButtonControl({ "TOPLEFT", self.controls.characterImportAnchor, "TOPLEFT" },
+185:	self.controls.charSelectHeader = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.sectionOauthCharImport, "TOPLEFT" },
+191:	self.controls.oauthErrorLabel = new("LabelControl"):LabelControl({ "TOPRIGHT", self.controls.sectionOauthCharImport, "TOPRIGHT" },
+246:	self.controls.charImportHeader = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.charSelect, "BOTTOMLEFT" },
+247:		{ 0, rowSpacing, 200, 16 }, "^7Import:")
+248:	self.controls.charImportTree = new("ButtonControl"):ButtonControl({ "LEFT", self.controls.charImportHeader, "RIGHT" },
+255:			local deleteJewels = self.controls.charImportTreeClearJewels.state
+259:					self:ImportPassiveTreeAndJewels(data.character, deleteJewels)
+270:				main:OpenConfirmPopup("Character Import", "Importing the passive tree will overwrite your current tree.",
+271:					"Import", function()
+273:						main.api:DownloadCharacter(realm.realmCode, selectedName, importHandler)
+277:				main.api:DownloadCharacter(realm.realmCode, selectedName, importHandler)
+280:	self.controls.charImportTree.enabled = function()
+283:	self.controls.charImportTreeClearJewels = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.charImportTree, "RIGHT" },
+285:	self.controls.charImportItems = new("ButtonControl"):ButtonControl({ "TOPLEFT", self.controls.charImportTree, "BOTTOMLEFT" },
+294:			main.api:DownloadCharacter(realm.realmCode, selectedName, function(data, errMsg)
+295:				local clearItems = self.controls.charImportItemsClearItems.state
+296:				local clearSkills = self.controls.charImportItemsClearSkills.state
+297:				local ignoreWeaponSwap = self.controls.charImportItemsIgnoreWeaponSwap.state
+300:					self:ImportItemsAndSkills(data.character, clearItems, clearSkills, ignoreWeaponSwap)
+311:	self.controls.charImportItems.enabled = function()
+314:	self.controls.charImportItemsClearSkills = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.charImportItems, "RIGHT" },
+316:	self.controls.charImportItemsClearItems = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.charImportItems, "RIGHT" },
+318:	self.controls.charImportItemsIgnoreWeaponSwap = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.charImportItems,
+322:	self.charImportMode = "GETACCOUNTNAME"
+323:	self.charImportStatus = "Idle"
+324:	self.controls.siteCharImportStatusLabel = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.sectionCharSiteImport, "TOPLEFT" },
+326:		return "^7Character import status: " .. self.charImportStatus
+330:	self.controls.siteAccountNameHeader = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.sectionCharSiteImport, "TOPLEFT" },
+333:		return self.charImportMode == "GETACCOUNTNAME"
+365:			self:DownloadSiteCharacterList(realm)
+409:	self.controls.siteCharSelectHeader = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.sectionCharSiteImport, "TOPLEFT" },
+412:		return self.charImportMode == "SELECTCHAR" or self.charImportMode == "IMPORTING"
+424:		return self.charImportMode == "SELECTCHAR"
+426:	self.controls.siteCharImportHeader = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.siteCharSelect, "BOTTOMLEFT" },
+427:		{ 0, 16, 200, 16 }, "^7Import:")
+428:	self.controls.siteCharImportTree = new("ButtonControl"):ButtonControl({ "LEFT", self.controls.siteCharImportHeader, "RIGHT" },
+432:				main:OpenConfirmPopup("Character Import", "Importing the passive tree will overwrite your current tree.",
+433:					"Import", function()
+434:						self:DownloadPassiveTree(realm)
+437:				self:DownloadPassiveTree(realm)
+441:	self.controls.siteCharImportTree.enabled = function()
+442:		return self.charImportMode == "SELECTCHAR"
+444:	self.controls.siteCharImportTreeClearJewels = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.siteCharImportTree, "RIGHT" },
+446:	self.controls.siteCharImportItems = new("ButtonControl"):ButtonControl({ "LEFT", self.controls.siteCharImportTree, "LEFT" },
+449:			self:DownloadItems(realm)
+452:	self.controls.siteCharImportItems.enabled = function()
+453:		return self.charImportMode == "SELECTCHAR"
+455:	self.controls.siteCharImportItemsClearSkills = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.siteCharImportItems, "RIGHT" },
+457:	self.controls.siteCharImportItemsClearItems = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.siteCharImportItems, "RIGHT" },
+459:	self.controls.siteCharImportItemsIgnoreWeaponSwap = new("CheckBoxControl"):CheckBoxControl({ "LEFT", self.controls.siteCharImportItems,
+461:	self.controls.siteCharBanditNote = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.siteCharImportHeader, "BOTTOMLEFT" },
+465:	self.controls.siteCharClose = new("ButtonControl"):ButtonControl({ "TOPLEFT", self.controls.siteCharImportHeader, "BOTTOMLEFT" },
+467:		self.charImportMode = "GETACCOUNTNAME"
+468:		self.charImportStatus = "Idle"
+472:---@class ImportTab: ControlHost, Control
+473:local ImportTabClass = newClass("ImportTab", "ControlHost", "Control")
+476:function ImportTabClass:ImportTab(build)
+487:	self.controls.sectionOauthCharImport = new("SectionControl"):SectionControl({ "TOPLEFT", self, "TOPLEFT" }, { 10, 18, 650, 200 },
+488:		"Import From Your Account")
+492:	self.controls.sectionCharSiteImport = new("SectionControl"):SectionControl({ "TOPLEFT", self.controls.sectionOauthCharImport, "BOTTOMLEFT" },
+494:		"Import By Account Name")
+499:	self.controls.sectionBuild = new("SectionControl"):SectionControl({ "TOPLEFT", self.controls.sectionCharSiteImport, "BOTTOMLEFT", true },
+502:		{ 6, 14, 0, 16 }, "^7Generate a code to share this build with other Path of Building users:")
+503:	self.controls.generateCode = new("ButtonControl"):ButtonControl({ "LEFT", self.controls.generateCodeLabel, "RIGHT" }, { 4, 0, 80, 20 }, "Generate", function()
+504:		self.controls.generateCodeOut:SetText(common.base64.encode(Deflate(self.build:SaveDB("code"))):gsub("+","-"):gsub("/","_"))
+506:	self.controls.enablePartyExportBuffs = new("CheckBoxControl"):CheckBoxControl({"LEFT",self.controls.generateCode,"RIGHT"}, {100, 0, 18}, "Export Support", function(state)
+507:		self.build.partyTab.enableExportBuffs = state
+522:	local getExportSitesFromImportList = function()
+525:			-- if entry has fields needed for Export
+532:	local exportWebsitesList = getExportSitesFromImportList()
+535:		main.lastExportWebsite = selectedWebsite.id
+538:	self.controls.exportFrom:SelByValue(self.exportWebsiteSelected or main.lastExportWebsite or "Pastebin", "id")
+541:		local subScriptId = buildSites.UploadBuild(self.controls.generateCodeOut.buf, exportWebsite)
+649:			main:OpenConfirmPopup("Build Import", colorCodes.WARNING.."Warning:^7 Importing to the current build will erase ALL existing data for this build.", "Import", function()
+655:			-- Import as comparison build
+657:				if self.build.compareTab:ImportBuild(self.importCodeXML, "Imported comparison") then
+660:					main:OpenMessagePopup("Import Error", "Failed to import build for comparison.")
+665:			self.build:Init(false, "Imported build", self.importCodeXML, false, self.importCodeSite and self.controls.importCodeIn.buf or nil)
+680:	self.controls.importCodeMode = new("DropDownControl"):DropDownControl({"TOPLEFT",self.controls.importCodeIn,"BOTTOMLEFT"}, {0, 4, 200, 20}, { "Import to this build", "Import to a new build", "Import as comparison" })
+684:	self.controls.importCodeGo = new("ButtonControl"):ButtonControl({"LEFT",self.controls.importCodeMode,"RIGHT"}, {8, 0, 160, 20}, "Import", function()
+688:			buildSites.DownloadBuild(self.controls.importCodeIn.buf, selectedWebsite, function(isSuccess, data)
+702:			self:ImportItemsAndSkills(self.importCodeJson, true, true, false)
+703:			self:ImportPassiveTreeAndJewels(self.importCodeJson, true)
+710:		return self.importCodeFetching and "Retrieving paste.." or "Import"
+734:function ImportTabClass:TryFetchCharacterList()
+741:function ImportTabClass:Load(xml, fileName)
+746:	self.controls.enablePartyExportBuffs.state = xml.attrib.exportParty == "true"
+747:	self.build.partyTab.enableExportBuffs = self.controls.enablePartyExportBuffs.state
+758:function ImportTabClass:Save(xml)
+764:		exportParty = tostring(self.controls.enablePartyExportBuffs.state),
+775:function ImportTabClass:Draw(viewPort, inputEvents)
+788:function ImportTabClass:ProcessSiteJSON(json)
+801:function ImportTabClass:SaveAccountHistory()
+813:function ImportTabClass:DownloadPassiveTree(realm)
+814:	self.charImportMode = "IMPORTING"
+815:	self.charImportStatus = "Retrieving character passive tree..."
+819:	launch:DownloadPage(
+824:			self.charImportMode = "SELECTCHAR"
+826:				self.charImportStatus = colorCodes.NEGATIVE ..
+830:				self.charImportStatus = colorCodes.NEGATIVE .. "Failed to retrieve character data, try again."
+846:			local deleteJewels = self.controls.siteCharImportTreeClearJewels.state
+847:			self:ImportPassiveTreeAndJewels(charData, deleteJewels)
+851:function ImportTabClass:DownloadItems(realm)
+852:	self.charImportMode = "IMPORTING"
+853:	self.charImportStatus = "Retrieving character items..."
+857:	launch:DownloadPage(
+862:			self.charImportMode = "SELECTCHAR"
+864:				self.charImportStatus = colorCodes.NEGATIVE ..
+868:				self.charImportStatus = colorCodes.NEGATIVE .. "Failed to retrieve character data, try again."
+880:			local clearItems = self.controls.siteCharImportItemsClearItems.state
+881:			local clearSkills = self.controls.siteCharImportItemsClearSkills.state
+882:			local ignoreWeaponSwap = self.controls.siteCharImportItemsIgnoreWeaponSwap.state
+883:			self:ImportItemsAndSkills(charData, clearItems, clearSkills, ignoreWeaponSwap)
+886:function ImportTabClass:DownloadSiteCharacterList(realm)
+904:	self.charImportMode = "DOWNLOADCHARLIST"
+905:	self.charImportStatus = "Retrieving character list..."
+914:	launch:DownloadPage(
+919:				self.charImportStatus = colorCodes.NEGATIVE .. "Account profile is private or does not exist."
+920:				self.charImportMode = "GETACCOUNTNAME"
+923:				self.charImportStatus = colorCodes.NEGATIVE .. "Account name is incorrect."
+924:				self.charImportMode = "GETACCOUNTNAME"
+927:				self.charImportStatus = colorCodes.NEGATIVE ..
+929:				self.charImportMode = "GETACCOUNTNAME"
+934:				self.charImportStatus = colorCodes.NEGATIVE .. "Error processing character list, try again later"
+935:				self.charImportMode = "GETACCOUNTNAME"
+940:				self.charImportStatus = colorCodes.NEGATIVE .. "The account has no characters to import."
+941:				self.charImportMode = "GETACCOUNTNAME"
+946:			launch:DownloadPage(realm.hostName .. realm.profileURL .. accountName:gsub("#", "%%23"),
+949:						self.charImportStatus = colorCodes.NEGATIVE ..
+951:						self.charImportMode = "GETACCOUNTNAME"
+958:						self.charImportStatus = colorCodes.NEGATIVE .. "Failed to retrieve character list."
+959:						self.charImportMode = "GETACCOUNTNAME"
+965:					self.charImportStatus = "Character list successfully retrieved."
+966:					self.charImportMode = "SELECTCHAR"
+1026:function ImportTabClass:BuildCharacterList(realm, league, characters, control)
+1130:function ImportTabClass:ImportPassiveTreeAndJewels(charData, deleteJewels)
+1155:				self.build.itemsTab.build.spec.ignoreAllocatingSubgraph = true -- ignore allocated cluster nodes on Import when Delete Jewel is true, clean slate
+1161:		self:ImportItem(itemData)
+1200:	self.build.spec:ImportFromNodeList(charData.class,
+1341:function ImportTabClass:GetOrCreateGuardianItemSet()
+1356:function ImportTabClass:AssignGuardianItemSet(itemSetId)
+1380:function ImportTabClass:ImportItemsAndSkills(charData, clearItems, clearSkills, ignoreWeaponSwap)
+1415:		self:ImportItem(itemData, nil, ignoreWeaponSwap)
+1420:			self:ImportItem(itemData, nil, ignoreWeaponSwap, guardianSet.id)
+1496:function ImportTabClass:ImportItem(itemData, slotName, ignoreWeaponSwap, itemSetId)
+1570:	-- Import item data
+1658:		self:ImportSocketedItems(item, itemData.socketedItems, slotName)
+1822:function ImportTabClass:ImportSocketedItems(item, socketedItems, slotName)
+1828:			self:ImportItem(socketedItem, slotName .. " Abyssal Socket "..abyssalSocketId)
+1866:	-- Import the socket groups
+1900:function ImportTabClass:GuessMainSocketGroup()
+1912:function HexToChar(x)
+1916:function UrlDecode(url)
+1925:function ImportTabClass:SetPredefinedBuildName()
+--- APIs ---
+src/Classes/PoEAPI.lua:5:local scopesOAuth = {
+src/Classes/PoEAPI.lua:8:	"account:characters",
+src/Classes/PoEAPI.lua:9:	"account:trade"
+src/Classes/PoEAPI.lua:14:---@class PoEAPI
+src/Classes/PoEAPI.lua:15:local PoEAPIClass = newClass("PoEAPI")
+src/Classes/PoEAPI.lua:17:function PoEAPIClass:PoEAPI(authToken, refreshToken, tokenExpiry)
+src/Classes/PoEAPI.lua:23:	self.rateLimiter = new("TradeQueryRateLimiter"):TradeQueryRateLimiter()
+src/Classes/PoEAPI.lua:34:function PoEAPIClass:ValidateAuth(callback)
+src/Classes/PoEAPI.lua:41:			launch:DownloadPage("https://www.pathofexile.com/oauth/token", function(response, errMsg)
+src/Classes/PoEAPI.lua:77:function PoEAPIClass:ResetDetails()
+src/Classes/PoEAPI.lua:85:function PoEAPIClass:UpdateMain()
+src/Classes/PoEAPI.lua:93:function PoEAPIClass:FetchAuthToken(callback)
+src/Classes/PoEAPI.lua:99:	-- 16 character hex string
+src/Classes/PoEAPI.lua:105:		"https://www.pathofexile.com/oauth/authorize?client_id=pob&response_type=code&scope=%s&state=%s&code_challenge=%s&code_challenge_method=S256"
+src/Classes/PoEAPI.lua:106:		, table.concat(scopesOAuth, "%20")
+src/Classes/PoEAPI.lua:126:					ConPrintf("OAuth state mismatch during authentication")
+src/Classes/PoEAPI.lua:128:					callback("OAuth state mismatch")
+src/Classes/PoEAPI.lua:134:				port .. "&scope=" .. table.concat(scopesOAuth, " ") .. "&code_verifier=" .. code_verifier
+src/Classes/PoEAPI.lua:135:				launch:DownloadPage("https://www.pathofexile.com/oauth/token", function(response, errMsg)
+src/Classes/PoEAPI.lua:158:function PoEAPIClass:DownloadWithRefresh(endpoint, callback)
+src/Classes/PoEAPI.lua:196:function PoEAPIClass:DownloadWithRateLimit(policy, url, callback)
+src/Classes/PoEAPI.lua:223:---Fetches character list from PoE's OAuth api
+src/Classes/PoEAPI.lua:226:function PoEAPIClass:DownloadCharacterList(realm, callback)
+src/Classes/PoEAPI.lua:227:	self:DownloadWithRateLimit("character-list-request-limit",
+src/Classes/PoEAPI.lua:228:		"/character" .. (realm == "pc" and "" or "/" .. realm), callback)
+src/Classes/PoEAPI.lua:231:---Fetches character from PoE's OAuth api
+src/Classes/PoEAPI.lua:232:---@param realm string Realm to fetch the character from
+src/Classes/PoEAPI.lua:233:---@param name string Character name to fetch
+src/Classes/PoEAPI.lua:235:function PoEAPIClass:DownloadCharacter(realm, name, callback)
+src/Classes/PoEAPI.lua:236:	self:DownloadWithRateLimit("character-request-limit",
+src/Classes/PoEAPI.lua:237:		"/character" .. (realm == "pc" and "" or "/" .. realm) .. "/" .. name, callback)
+src/Classes/ImportTab.lua:24:local function addOAuthControls(self)
+src/Classes/ImportTab.lua:25:	self.usingOauth = true
+src/Classes/ImportTab.lua:27:	-- the 60 second timer for oauth
+src/Classes/ImportTab.lua:29:	self.oauthTimer = nil
+src/Classes/ImportTab.lua:34:	self.oauthErrCode = nil
+src/Classes/ImportTab.lua:36:	self.oauthLoading = false
+src/Classes/ImportTab.lua:37:	-- an array of Character for each realm. Note this is for the character
+src/Classes/ImportTab.lua:39:	-- https://www.pathofexile.com/developer/docs/reference#type-Character
+src/Classes/ImportTab.lua:41:	self.characterList = {}
+src/Classes/ImportTab.lua:45:		return not (realm and self.characterList[realm.realmCode])
+src/Classes/ImportTab.lua:48:		if not self.isAuthorized() and not self.oauthTimer then
+src/Classes/ImportTab.lua:50:		elseif not self.isAuthorized() and self.oauthTimer then
+src/Classes/ImportTab.lua:51:			local timeLeft = m_max(0, (self.oauthTimer + 60) - os.time())
+src/Classes/ImportTab.lua:53:				self.oauthTimer = nil
+src/Classes/ImportTab.lua:56:			return string.format("Logging in... (%d) - URL copied to clipboard", timeLeft) .. (self.oauthErrCode or "")
+src/Classes/ImportTab.lua:65:		elseif self.isAuthorized() and self.oauthLoading then
+src/Classes/ImportTab.lua:79:	self.controls.charImportStatusLabel = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.sectionOauthCharImport, "TOPLEFT" },
+src/Classes/ImportTab.lua:81:			return "^7Character import status: " .. charImportStatus()
+src/Classes/ImportTab.lua:89:	self.controls.logoutApiButton.shown = function() return self.usingOauth and self.isAuthorized() end
+src/Classes/ImportTab.lua:91:	self.controls.characterImportAnchor = new("Control"):Control({ "TOPLEFT", self.controls.sectionOauthCharImport, "TOPLEFT" },
+src/Classes/ImportTab.lua:93:	self.controls.sectionOauthCharImport.height = function()
+src/Classes/ImportTab.lua:100:		local currentCharacters = currentRealm and self.characterList[currentRealm]
+src/Classes/ImportTab.lua:101:		if not currentCharacters or #currentCharacters == 0 then
+src/Classes/ImportTab.lua:108:		for _, character in ipairs(currentCharacters) do
+src/Classes/ImportTab.lua:110:			if character.league then
+src/Classes/ImportTab.lua:111:				set[character.league] = true
+src/Classes/ImportTab.lua:137:	local function fetchCharacters()
+src/Classes/ImportTab.lua:140:		self.oauthLoading = true
+src/Classes/ImportTab.lua:143:				self.characterList[realm.realmCode] = body.characters
+src/Classes/ImportTab.lua:145:				self.oauthLoading = false
+src/Classes/ImportTab.lua:146:				self.oauthErrCode = nil
+src/Classes/ImportTab.lua:152:				self.oauthErrCode = "Auth token is invalid. Please login again."
+src/Classes/ImportTab.lua:155:				self.oauthErrCode = err
+src/Classes/ImportTab.lua:157:			self.oauthLoading = false
+src/Classes/ImportTab.lua:160:		main.api:DownloadCharacterList(realm.realmCode, onResponse)
+src/Classes/ImportTab.lua:163:	self.controls.authenticateButton = new("ButtonControl"):ButtonControl({ "TOPLEFT", self.controls.characterImportAnchor, "TOPLEFT" },
+src/Classes/ImportTab.lua:167:					self.oauthErrCode = errCode
+src/Classes/ImportTab.lua:168:					self.oauthTimer = nil
+src/Classes/ImportTab.lua:170:					self.oauthErrCode = nil
+src/Classes/ImportTab.lua:171:					self.oauthTimer = nil
+src/Classes/ImportTab.lua:175:					fetchCharacters()
+src/Classes/ImportTab.lua:178:			self.oauthTimer = os.time()
+src/Classes/ImportTab.lua:181:		return self.usingOauth and not self.isAuthorized()
+src/Classes/ImportTab.lua:184:	-- Stage: select realm, league, character, and import data
+src/Classes/ImportTab.lua:185:	self.controls.charSelectHeader = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.sectionOauthCharImport, "TOPLEFT" },
+src/Classes/ImportTab.lua:186:		{ labelSpacing, 40, 200, 16 }, "^7Choose character to import data from:")
+src/Classes/ImportTab.lua:188:		return self.usingOauth and self.isAuthorized()
+src/Classes/ImportTab.lua:191:	self.controls.oauthErrorLabel = new("LabelControl"):LabelControl({ "TOPRIGHT", self.controls.sectionOauthCharImport, "TOPRIGHT" },
+src/Classes/ImportTab.lua:193:	self.controls.oauthErrorLabel.label = function()
+src/Classes/ImportTab.lua:194:		local text = self.oauthErrCode and string.format("%sError: %s", colorCodes.NEGATIVE, self.oauthErrCode) or ""
+src/Classes/ImportTab.lua:206:		if realm and self.characterList[realm.realmCode] then
+src/Classes/ImportTab.lua:209:		return "Fetch Characters"
+src/Classes/ImportTab.lua:212:		{ labelSpacing, 0, 130, 20 }, fetchTextFunc, fetchCharacters)
+src/Classes/ImportTab.lua:220:			self:BuildCharacterList(realm, nil, self.characterList[realm], self.controls.charSelect)
+src/Classes/ImportTab.lua:222:			self:BuildCharacterList(realm, newLeague, self.characterList[realm], self.controls.charSelect)
+src/Classes/ImportTab.lua:230:	-- character select
+src/Classes/ImportTab.lua:234:		return self.usingOauth and self.isAuthorized()
+src/Classes/ImportTab.lua:243:		main.lastCharacterHash = common.sha1(charName)
+src/Classes/ImportTab.lua:244:		self.lastCharacterHash = common.sha1(charName)
+src/Classes/ImportTab.lua:257:				if data and data.character then
+src/Classes/ImportTab.lua:258:					self.oauthErrCode = nil
+src/Classes/ImportTab.lua:259:					self:ImportPassiveTreeAndJewels(data.character, deleteJewels)
+src/Classes/ImportTab.lua:262:						self.oauthErrCode = "Could not import: " .. errMsg
+src/Classes/ImportTab.lua:264:						self.oauthErrCode = "Could not import character"
+src/Classes/ImportTab.lua:267:				self.oauthLoading = false
+src/Classes/ImportTab.lua:270:				main:OpenConfirmPopup("Character Import", "Importing the passive tree will overwrite your current tree.",
+src/Classes/ImportTab.lua:272:						self.oauthLoading = true
+src/Classes/ImportTab.lua:273:						main.api:DownloadCharacter(realm.realmCode, selectedName, importHandler)
+src/Classes/ImportTab.lua:276:				self.oauthLoading = true
+src/Classes/ImportTab.lua:277:				main.api:DownloadCharacter(realm.realmCode, selectedName, importHandler)
+src/Classes/ImportTab.lua:281:		return self.usingOauth and self.isAuthorized() and self.controls.charSelect:GetSelValue()
+src/Classes/ImportTab.lua:293:			self.oauthLoading = true
+src/Classes/ImportTab.lua:294:			main.api:DownloadCharacter(realm.realmCode, selectedName, function(data, errMsg)
+src/Classes/ImportTab.lua:298:				if data and data.character then
+src/Classes/ImportTab.lua:299:					self.oauthErrCode = nil
+src/Classes/ImportTab.lua:300:					self:ImportItemsAndSkills(data.character, clearItems, clearSkills, ignoreWeaponSwap)
+src/Classes/ImportTab.lua:303:						self.oauthErrCode = "Could not import: " .. errMsg
+src/Classes/ImportTab.lua:305:						self.oauthErrCode = "Could not import character"
+src/Classes/ImportTab.lua:308:				self.oauthLoading = false
+src/Classes/ImportTab.lua:312:		return self.usingOauth and self.isAuthorized() and self.controls.charSelect:GetSelValue()
+src/Classes/ImportTab.lua:326:		return "^7Character import status: " .. self.charImportStatus
+src/Classes/ImportTab.lua:331:		{ 6, 40, 250, 16 }, "^7To start importing a character, enter the character's account name:")
+src/Classes/ImportTab.lua:365:			self:DownloadSiteCharacterList(realm)
+src/Classes/ImportTab.lua:406:		"^7Note: if the account name contains non-ASCII characters it must be pasted into the textbox,\nnot typed manually.")
+src/Classes/ImportTab.lua:408:	-- Stage: select character and import data
+src/Classes/ImportTab.lua:410:		{ 6, 40, 200, 16 }, "^7Choose character to import data from:")
+src/Classes/ImportTab.lua:419:			self:BuildCharacterList(realm.realmCode, value.league, self.lastCharList, self.controls.siteCharSelect)
+src/Classes/ImportTab.lua:432:				main:OpenConfirmPopup("Character Import", "Importing the passive tree will overwrite your current tree.",
+src/Classes/ImportTab.lua:463:		"^7Tip: After you finish importing a character, make sure you update the bandit choice,\nas it can only be imported by logging in above.")
+src/Classes/ImportTab.lua:483:		main.api = new("PoEAPI"):PoEAPI(main.lastToken, main.lastRefreshToken, main.tokenExpiry)
+src/Classes/ImportTab.lua:487:	self.controls.sectionOauthCharImport = new("SectionControl"):SectionControl({ "TOPLEFT", self, "TOPLEFT" }, { 10, 18, 650, 200 },
+src/Classes/ImportTab.lua:490:	addOAuthControls(self)
+src/Classes/ImportTab.lua:492:	self.controls.sectionCharSiteImport = new("SectionControl"):SectionControl({ "TOPLEFT", self.controls.sectionOauthCharImport, "BOTTOMLEFT" },
+src/Classes/ImportTab.lua:509:	end, "This is for party play, to export support character, it enables the exporting of auras, curses and modifiers to the enemy", false)
+src/Classes/ImportTab.lua:616:			if not jsonData.character then
+src/Classes/ImportTab.lua:617:				self.importCodeDetail = colorCodes.NEGATIVE.."Invalid JSON format (character missing)"
+src/Classes/ImportTab.lua:620:			jsonData = jsonData.character
+src/Classes/ImportTab.lua:725:				self.oauthErrCode = string.format("Token refresh failed: %s", errMsg)
+src/Classes/ImportTab.lua:732:-- attempt to fetch the last realm's character list once per instance, if there
+src/Classes/ImportTab.lua:734:function ImportTabClass:TryFetchCharacterList()
+src/Classes/ImportTab.lua:755:	self.lastCharacterHash = xml.attrib.lastCharacterHash
+src/Classes/ImportTab.lua:763:		lastCharacterHash = self.lastCharacterHash,
+src/Classes/ImportTab.lua:815:	self.charImportStatus = "Retrieving character passive tree..."
+src/Classes/ImportTab.lua:821:	"character-window/get-passive-skills?accountName=" ..
+src/Classes/ImportTab.lua:822:	accountName:gsub("#", "%%23") .. "&character=" .. urlEncode(charListData.name) .. "&realm=" .. realm.realmCode,
+src/Classes/ImportTab.lua:827:				"Error importing character data, try again (" .. errMsg:gsub("\n", " ") .. ")"
+src/Classes/ImportTab.lua:830:				self.charImportStatus = colorCodes.NEGATIVE .. "Failed to retrieve character data, try again."
+src/Classes/ImportTab.lua:833:			self.lastCharacterHash = common.sha1(charListData.name)
+src/Classes/ImportTab.lua:842:			-- modify response to be like the oauth API response
+src/Classes/ImportTab.lua:853:	self.charImportStatus = "Retrieving character items..."
+src/Classes/ImportTab.lua:859:	"character-window/get-items?accountName=" ..
+src/Classes/ImportTab.lua:860:		accountName:gsub("#", "%%23") .. "&character=" .. urlEncode(charListData.name) .. "&realm=" .. realm.realmCode,
+src/Classes/ImportTab.lua:865:				"Error importing character data, try again (" .. errMsg:gsub("\n", " ") .. ")"
+src/Classes/ImportTab.lua:868:				self.charImportStatus = colorCodes.NEGATIVE .. "Failed to retrieve character data, try again."
+src/Classes/ImportTab.lua:871:			self.lastCharacterHash = common.sha1(charListData.name)
+src/Classes/ImportTab.lua:876:			-- modify response to be like the oauth API response
+src/Classes/ImportTab.lua:886:function ImportTabClass:DownloadSiteCharacterList(realm)
+src/Classes/ImportTab.lua:905:	self.charImportStatus = "Retrieving character list..."
+src/Classes/ImportTab.lua:916:	"character-window/get-characters?accountName=" .. accountName:gsub("#", "%%23") .. "&realm=" .. realm.realmCode,
+src/Classes/ImportTab.lua:928:				"Error retrieving character list, try again (" .. errMsg:gsub("\n", " ") .. ")"
+src/Classes/ImportTab.lua:934:				self.charImportStatus = colorCodes.NEGATIVE .. "Error processing character list, try again later"
+src/Classes/ImportTab.lua:940:				self.charImportStatus = colorCodes.NEGATIVE .. "The account has no characters to import."
+src/Classes/ImportTab.lua:944:			-- GGG's character API has an issue where for /get-characters the account name is not case-sensitive, but for /get-passive-skills and /get-items it is.
+src/Classes/ImportTab.lua:950:						"Error retrieving character list, try again (" .. errMsg:gsub("\n", " ") .. ")"
+src/Classes/ImportTab.lua:955:					response.body:match("/view%-profile/([^/]+)/characters"):gsub(".",
+src/Classes/ImportTab.lua:958:						self.charImportStatus = colorCodes.NEGATIVE .. "Failed to retrieve character list."
+src/Classes/ImportTab.lua:965:					self.charImportStatus = "Character list successfully retrieved."
+src/Classes/ImportTab.lua:991:					-- set the league combo to the last used if possible, used for previously imported characters
+src/Classes/ImportTab.lua:996:							-- League maybe over, Character will be in standard
+src/Classes/ImportTab.lua:1012:					self:BuildCharacterList(realm.realmCode,
+src/Classes/ImportTab.lua:1024:--- @param characters table?
+src/Classes/ImportTab.lua:1026:function ImportTabClass:BuildCharacterList(realm, league, characters, control)
+src/Classes/ImportTab.lua:1028:	if not characters then
+src/Classes/ImportTab.lua:1031:	for i, char in ipairs(characters) do
+src/Classes/ImportTab.lua:1086:	if self.lastCharacterHash then
+src/Classes/ImportTab.lua:1088:			if common.sha1(char.char.name) == self.lastCharacterHash then
+src/Classes/ImportTab.lua:1095:-- https://www.pathofexile.com/developer/docs/reference#type-Character
+src/Classes/ImportTab.lua:1096:--- @class CharacterBasicData
+src/Classes/ImportTab.lua:1110:--- @class CharacterPassives
+src/Classes/ImportTab.lua:1119:--- @field alternate_ascendancy string | integer integer on website, string on oauth
+src/Classes/ImportTab.lua:1124:--- @class CharacterPassivesData : CharacterBasicData
+src/Classes/ImportTab.lua:1126:--- @field passives CharacterPassives
+src/Classes/ImportTab.lua:1127:--- @param charData CharacterPassivesData
+src/Classes/ImportTab.lua:1185:		-- oauth responses have bloodline names
+src/Classes/ImportTab.lua:1196:	-- Character import uses current GGG cluster hashes.
+src/Classes/ImportTab.lua:1212:	self.build.characterLevel = charData.level or 100
+src/Classes/ImportTab.lua:1213:	self.build.characterLevelAutoMode = false
+src/Classes/ImportTab.lua:1215:	self.build.controls.characterLevel:SetText(charData.level)
+src/Classes/ImportTab.lua:1373:--- @class CharacterItemsData : CharacterBasicData
+src/Classes/ImportTab.lua:1375:--- @param charData CharacterItemsData
+src/Classes/ImportTab.lua:1379:--- @return CharacterItemsData, string
+src/Classes/ImportTab.lua:1484:	self.build.characterLevel = charData.level
+src/Classes/ImportTab.lua:1486:	self.build.controls.characterLevel:SetText(tostring(charData.level))

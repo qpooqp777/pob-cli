@@ -1,0 +1,37 @@
+{
+  "source_result": "/home/ubuntu/pob-cli/reports/tree_matrix_result.json",
+  "candidate_count": 2,
+  "success_count": 2,
+  "failure_count": 0,
+  "font": "Noto Sans CJK TC",
+  "rows": [
+    {
+      "rank": 1,
+      "name": "remove-intelligence",
+      "dps_pct": -16.30237278886955,
+      "ehp_pct": -0.09472420786240712,
+      "max_hit_pct": 0.0,
+      "hc_pass": false,
+      "score": [
+        0,
+        -16.30237278886955,
+        -0.09472420786240712,
+        -Infinity
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "same-node-mastery",
+      "dps_pct": 0.0,
+      "ehp_pct": 0.0,
+      "max_hit_pct": 0.0,
+      "hc_pass": false,
+      "score": [
+        0,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ]
+    }
+  ]
+}

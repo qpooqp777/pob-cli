@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathOfBuilding>
+  <Build className="Deadeye" level="90" label="Lightning Arrow XML 測試 Build" life="3420" energyShield="0" armour="1200" evasion="8500" fireResist="75" coldResist="63" lightningResist="75" chaosResist="-32" spellSuppression="48" />
+  <PlayerStat stat="Life" value="3420" />
+  <PlayerStat stat="EnergyShield" value="0" />
+  <PlayerStat stat="FireResist" value="75" />
+  <PlayerStat stat="ColdResist" value="63" />
+  <PlayerStat stat="LightningResist" value="75" />
+  <PlayerStat stat="ChaosResist" value="-32" />
+  <PlayerStat stat="SpellSuppressionChance" value="48" />
+  <Items>
+    <Item id="Ring 1">稀有 Opal Ring
++72 最大生命
++35% 火焰抗性
++32% 冰冷抗性</Item>
+    <Item id="Gloves">稀有手套
++80 最大生命
++28% 閃電抗性
++14% 法術壓制</Item>
+    <Item id="Boots">稀有靴子
++55 最大生命
++30% 火焰抗性
++20% 移動速度</Item>
+  </Items>
+</PathOfBuilding>

@@ -1,0 +1,22 @@
+{
+  "name": "Lightning Arrow 測試 Build",
+  "level": 90,
+  "class_name": "Deadeye",
+  "stats": {
+    "life": 3420,
+    "energy_shield": 0,
+    "armour": 1200,
+    "evasion": 8500,
+    "fire_res": 75,
+    "cold_res": 63,
+    "lightning_res": 75,
+    "chaos_res": -32,
+    "spell_suppression": 48,
+    "block": 15
+  },
+  "items": [
+    {"slot": "Ring 1", "name": "稀有 Opal Ring", "text": "稀有 Opal Ring\n+72 最大生命\n+35% 火焰抗性\n+32% 冰冷抗性", "mods": ["稀有 Opal Ring", "+72 最大生命", "+35% 火焰抗性", "+32% 冰冷抗性"]},
+    {"slot": "Gloves", "name": "稀有手套", "text": "稀有手套\n+80 最大生命\n+28% 閃電抗性\n+14% 法術壓制", "mods": ["稀有手套", "+80 最大生命", "+28% 閃電抗性", "+14% 法術壓制"]},
+    {"slot": "Boots", "name": "稀有靴子", "text": "稀有靴子\n+55 最大生命\n+30% 火焰抗性\n+20% 移動速度", "mods": ["稀有靴子", "+55 最大生命", "+30% 火焰抗性", "+20% 移動速度"]}
+  ]
+}

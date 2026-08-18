@@ -1,0 +1,3009 @@
+{
+  "candidate_count": 2,
+  "failure_count": 0,
+  "failures": [],
+  "matrix": "test_tree_matrix.json",
+  "results": [
+    {
+      "metadata": {
+        "purpose": "defensive tradeoff"
+      },
+      "name": "remove-intelligence",
+      "operations": {
+        "add_nodes": [],
+        "mastery": [],
+        "remove_nodes": [
+          7388
+        ]
+      },
+      "power_report": {
+        "engine": "Path of Building Community Fork",
+        "hc_constraints": {
+          "checks": {
+            "attack_block": {
+              "actual": 74.0,
+              "minimum": 70.0,
+              "pass": true
+            },
+            "dps_gain": {
+              "actual_pct": -16.302372788869558,
+              "minimum_pct": 3.0,
+              "pass": false
+            },
+            "ehp_ratio": {
+              "actual": 0.9990527579213759,
+              "minimum": 0.95,
+              "pass": true
+            },
+            "spell_block": {
+              "actual": 73.0,
+              "minimum": 70.0,
+              "pass": true
+            }
+          },
+          "passed": false
+        },
+        "scalar_delta": {
+          "Armour": {
+            "absolute": 0.0,
+            "after": 10288.0,
+            "before": 10288.0,
+            "percent": 0.0
+          },
+          "ChaosMaximumHitTaken": {
+            "absolute": 0.0,
+            "after": 20596.0,
+            "before": 20596.0,
+            "percent": 0.0
+          },
+          "ChaosResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "ColdMaximumHitTaken": {
+            "absolute": -28.0,
+            "after": 29251.0,
+            "before": 29279.0,
+            "percent": -0.09563168140988422
+          },
+          "ColdResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "EffectiveAverageBlockChance": {
+            "absolute": 0.0,
+            "after": 74.0,
+            "before": 74.0,
+            "percent": 0.0
+          },
+          "EffectiveSpellBlockChance": {
+            "absolute": 0.0,
+            "after": 73.0,
+            "before": 73.0,
+            "percent": 0.0
+          },
+          "EnergyShield": {
+            "absolute": -7.0,
+            "after": 2242.0,
+            "before": 2249.0,
+            "percent": -0.31124944419742107
+          },
+          "Evasion": {
+            "absolute": 0.0,
+            "after": 363.0,
+            "before": 363.0,
+            "percent": 0.0
+          },
+          "FireMaximumHitTaken": {
+            "absolute": -28.0,
+            "after": 29251.0,
+            "before": 29279.0,
+            "percent": -0.09563168140988422
+          },
+          "FireResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "Life": {
+            "absolute": 0.0,
+            "after": 5149.0,
+            "before": 5149.0,
+            "percent": 0.0
+          },
+          "LightningMaximumHitTaken": {
+            "absolute": -28.0,
+            "after": 29251.0,
+            "before": 29279.0,
+            "percent": -0.09563168140988422
+          },
+          "LightningResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "PhysicalMaximumHitTaken": {
+            "absolute": -9.0,
+            "after": 10419.0,
+            "before": 10428.0,
+            "percent": -0.08630609896432681
+          },
+          "SpellSuppressionChance": {
+            "absolute": 0.0,
+            "after": 0.0,
+            "before": 0.0,
+            "percent": null
+          },
+          "TotalDPS": {
+            "absolute": -72095.70312551002,
+            "after": 370144.84712576,
+            "before": 442240.55025127,
+            "percent": -16.30237278886955
+          },
+          "TotalDotDPS": {
+            "absolute": -2481.706605273008,
+            "after": 98204.675665637,
+            "before": 100686.38227091,
+            "percent": -2.4647887323984374
+          },
+          "TotalEHP": {
+            "absolute": -96.46022701999755,
+            "after": 101736.24885207,
+            "before": 101832.70907909,
+            "percent": -0.09472420786240712
+          }
+        },
+        "schema_version": 1,
+        "selected_skill": "Creeping Frost",
+        "skill_context": {
+          "after": {
+            "groups": [
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Creeping Frost",
+                    "quality": 20,
+                    "skillId": "CreepingFrost",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "CreepingFrost"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Gluttony",
+                    "quality": 20,
+                    "skillId": "SupportGluttony",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportGluttony"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Overloaded Intensity",
+                    "quality": 20,
+                    "skillId": "SupportOverloadedIntensity",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportOverloadedIntensity"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Strikes",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalStrikes",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalStrikes"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Pinpoint",
+                    "quality": 20,
+                    "skillId": "SupportPinpoint",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPinpoint"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Damage",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalDamage",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalDamage"
+                  }
+                ],
+                "group_index": 1,
+                "set_id": 1,
+                "slot": "Body Armour"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 2,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 3,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 4,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 5,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedLightningGolem",
+                      "minionTypes": [
+                        "SummonedLightningGolem"
+                      ]
+                    },
+                    "name": "Summon Lightning Golem",
+                    "quality": 20,
+                    "skillId": "SummonLightningGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonLightningGolem"
+                  }
+                ],
+                "group_index": 6,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedFlameGolem",
+                      "minionTypes": [
+                        "SummonedFlameGolem"
+                      ]
+                    },
+                    "name": "Summon Flame Golem",
+                    "quality": 20,
+                    "skillId": "SummonFlameGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonFlameGolem"
+                  }
+                ],
+                "group_index": 7,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedChaosGolem",
+                      "minionTypes": [
+                        "SummonedChaosGolem"
+                      ]
+                    },
+                    "name": "Summon Chaos Golem",
+                    "quality": 0,
+                    "skillId": "SummonChaosGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonChaosGolem"
+                  }
+                ],
+                "group_index": 8,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Winter Orb",
+                    "quality": 20,
+                    "skillId": "WinterOrb",
+                    "skillMineCount": null,
+                    "skillPart": 1,
+                    "skillStageCount": null,
+                    "variantId": "WinterOrb"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Power Charge On Critical",
+                    "quality": 20,
+                    "skillId": "SupportPowerChargeOnCritical",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPowerChargeOnCritical"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Ice Bite",
+                    "quality": 20,
+                    "skillId": "SupportIceBite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIceBite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Focused Channelling",
+                    "quality": 20,
+                    "skillId": "SupportFocusedChannelling",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFocusedChannelling"
+                  }
+                ],
+                "group_index": 9,
+                "set_id": 1,
+                "slot": "Helmet"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Tempest Shield",
+                    "quality": 0,
+                    "skillId": "TempestShield",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "TempestShield"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostbite",
+                    "quality": 0,
+                    "skillId": "Frostbite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostbite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Herald of Ice",
+                    "quality": 20,
+                    "skillId": "HeraldOfIce",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "HeraldOfIce"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Arctic Armour",
+                    "quality": 0,
+                    "skillId": "ArcticArmour",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ArcticArmour"
+                  }
+                ],
+                "group_index": 10,
+                "set_id": 1,
+                "slot": "Boots"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "transfigured",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Righteous Fire of Arcane Devotion",
+                    "quality": 0,
+                    "skillId": "RighteousFireAltX",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RighteousFireAltX"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedStoneGolem",
+                      "minionTypes": [
+                        "SummonedStoneGolem"
+                      ]
+                    },
+                    "name": "Summon Stone Golem",
+                    "quality": 20,
+                    "skillId": "SummonStoneGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonStoneGolem"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Flesh and Stone",
+                    "quality": 0,
+                    "skillId": "FleshAndStone",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "FleshAndStone"
+                  }
+                ],
+                "group_index": 11,
+                "set_id": 1,
+                "slot": "Weapon 2"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostblink",
+                    "quality": 0,
+                    "skillId": "Frostblink",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostblink"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Faster Attacks",
+                    "quality": 20,
+                    "skillId": "SupportFasterAttacks",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFasterAttacks"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 1,
+                    "minionContext": null,
+                    "name": "Lifetap",
+                    "quality": 20,
+                    "skillId": "SupportLifetap",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportLifetap"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Shield Charge",
+                    "quality": 0,
+                    "skillId": "ShieldCharge",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ShieldCharge"
+                  }
+                ],
+                "group_index": 12,
+                "set_id": 1,
+                "slot": "Gloves"
+              }
+            ],
+            "selected_skill": "Creeping Frost"
+          },
+          "before": {
+            "groups": [
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Creeping Frost",
+                    "quality": 20,
+                    "skillId": "CreepingFrost",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "CreepingFrost"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Gluttony",
+                    "quality": 20,
+                    "skillId": "SupportGluttony",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportGluttony"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Overloaded Intensity",
+                    "quality": 20,
+                    "skillId": "SupportOverloadedIntensity",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportOverloadedIntensity"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Strikes",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalStrikes",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalStrikes"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Pinpoint",
+                    "quality": 20,
+                    "skillId": "SupportPinpoint",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPinpoint"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Damage",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalDamage",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalDamage"
+                  }
+                ],
+                "group_index": 1,
+                "set_id": 1,
+                "slot": "Body Armour"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 2,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 3,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 4,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 5,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedLightningGolem",
+                      "minionTypes": [
+                        "SummonedLightningGolem"
+                      ]
+                    },
+                    "name": "Summon Lightning Golem",
+                    "quality": 20,
+                    "skillId": "SummonLightningGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonLightningGolem"
+                  }
+                ],
+                "group_index": 6,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedFlameGolem",
+                      "minionTypes": [
+                        "SummonedFlameGolem"
+                      ]
+                    },
+                    "name": "Summon Flame Golem",
+                    "quality": 20,
+                    "skillId": "SummonFlameGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonFlameGolem"
+                  }
+                ],
+                "group_index": 7,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedChaosGolem",
+                      "minionTypes": [
+                        "SummonedChaosGolem"
+                      ]
+                    },
+                    "name": "Summon Chaos Golem",
+                    "quality": 0,
+                    "skillId": "SummonChaosGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonChaosGolem"
+                  }
+                ],
+                "group_index": 8,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Winter Orb",
+                    "quality": 20,
+                    "skillId": "WinterOrb",
+                    "skillMineCount": null,
+                    "skillPart": 1,
+                    "skillStageCount": null,
+                    "variantId": "WinterOrb"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Power Charge On Critical",
+                    "quality": 20,
+                    "skillId": "SupportPowerChargeOnCritical",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPowerChargeOnCritical"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Ice Bite",
+                    "quality": 20,
+                    "skillId": "SupportIceBite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIceBite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Focused Channelling",
+                    "quality": 20,
+                    "skillId": "SupportFocusedChannelling",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFocusedChannelling"
+                  }
+                ],
+                "group_index": 9,
+                "set_id": 1,
+                "slot": "Helmet"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Tempest Shield",
+                    "quality": 0,
+                    "skillId": "TempestShield",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "TempestShield"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostbite",
+                    "quality": 0,
+                    "skillId": "Frostbite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostbite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Herald of Ice",
+                    "quality": 20,
+                    "skillId": "HeraldOfIce",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "HeraldOfIce"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Arctic Armour",
+                    "quality": 0,
+                    "skillId": "ArcticArmour",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ArcticArmour"
+                  }
+                ],
+                "group_index": 10,
+                "set_id": 1,
+                "slot": "Boots"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "transfigured",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Righteous Fire of Arcane Devotion",
+                    "quality": 0,
+                    "skillId": "RighteousFireAltX",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RighteousFireAltX"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedStoneGolem",
+                      "minionTypes": [
+                        "SummonedStoneGolem"
+                      ]
+                    },
+                    "name": "Summon Stone Golem",
+                    "quality": 20,
+                    "skillId": "SummonStoneGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonStoneGolem"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Flesh and Stone",
+                    "quality": 0,
+                    "skillId": "FleshAndStone",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "FleshAndStone"
+                  }
+                ],
+                "group_index": 11,
+                "set_id": 1,
+                "slot": "Weapon 2"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostblink",
+                    "quality": 0,
+                    "skillId": "Frostblink",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostblink"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Faster Attacks",
+                    "quality": 20,
+                    "skillId": "SupportFasterAttacks",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFasterAttacks"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 1,
+                    "minionContext": null,
+                    "name": "Lifetap",
+                    "quality": 20,
+                    "skillId": "SupportLifetap",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportLifetap"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Shield Charge",
+                    "quality": 0,
+                    "skillId": "ShieldCharge",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ShieldCharge"
+                  }
+                ],
+                "group_index": 12,
+                "set_id": 1,
+                "slot": "Gloves"
+              }
+            ],
+            "selected_skill": "Creeping Frost"
+          },
+          "changed": false
+        },
+        "tree": "3_29",
+        "warnings": []
+      },
+      "rank": 1,
+      "score": [
+        0,
+        -16.30237278886955,
+        -0.09472420786240712,
+        -Infinity
+      ],
+      "tree_diff": {
+        "added_nodes": [],
+        "ascend_class": {
+          "candidate": "2",
+          "current": "2"
+        },
+        "candidate": "attached_build.candidate.xml",
+        "candidate_node_count": 132,
+        "changed_mastery": {
+          "added": [],
+          "removed": []
+        },
+        "class": {
+          "candidate": "3",
+          "current": "3"
+        },
+        "current": "attached_build.xml",
+        "current_node_count": 133,
+        "point_delta": -1,
+        "removed_nodes": [
+          7388
+        ],
+        "tree_version": {
+          "candidate": "3_29",
+          "current": "3_29"
+        }
+      },
+      "tree_validation": {
+        "added_disconnected_nodes": [],
+        "added_nodes": [],
+        "baseline_disconnected_nodes": [
+          1346,
+          4036,
+          4184,
+          4367,
+          4397,
+          4502,
+          5296,
+          5743,
+          5972,
+          6770,
+          7388,
+          7444,
+          9386,
+          9567,
+          9586,
+          10031,
+          11420,
+          11689,
+          11730,
+          12128,
+          12246,
+          12536,
+          13009,
+          13164,
+          13232,
+          14113,
+          14745,
+          14936,
+          15064,
+          15167,
+          15228,
+          16123,
+          16790,
+          17735,
+          18769,
+          19008,
+          19501,
+          20528,
+          20987,
+          21958,
+          22090,
+          23027,
+          26270,
+          26866,
+          27203,
+          27323,
+          29061,
+          30393,
+          32241,
+          32710,
+          33310,
+          33435,
+          34171,
+          34506,
+          35958,
+          36412,
+          36452,
+          36542,
+          36678,
+          36949,
+          38190,
+          39841,
+          40609,
+          40927,
+          41251,
+          41415,
+          41472,
+          41635,
+          43061,
+          44184,
+          44799,
+          44955,
+          45558,
+          46897,
+          46904,
+          48362,
+          49254,
+          49605,
+          51219,
+          51801,
+          52502,
+          53573,
+          54694,
+          55230,
+          55993,
+          56075,
+          56158,
+          58210,
+          58218,
+          60170,
+          60398,
+          60472,
+          61308,
+          61471,
+          61653,
+          63398,
+          63447,
+          64210
+        ],
+        "class_id": 3,
+        "disconnected_nodes": [
+          1346,
+          4036,
+          4184,
+          4367,
+          4397,
+          4502,
+          5296,
+          5743,
+          5972,
+          6770,
+          7444,
+          9386,
+          9567,
+          9586,
+          10031,
+          11420,
+          11689,
+          11730,
+          12128,
+          12246,
+          12536,
+          13009,
+          13164,
+          13232,
+          14113,
+          14745,
+          14936,
+          15064,
+          15167,
+          15228,
+          16123,
+          16790,
+          17735,
+          18769,
+          19008,
+          19501,
+          20528,
+          20987,
+          21958,
+          22090,
+          23027,
+          26270,
+          26866,
+          27203,
+          27323,
+          29061,
+          30393,
+          32241,
+          32710,
+          33310,
+          33435,
+          34171,
+          34506,
+          35958,
+          36412,
+          36452,
+          36542,
+          36678,
+          36949,
+          38190,
+          39841,
+          40609,
+          40927,
+          41251,
+          41415,
+          41472,
+          41635,
+          43061,
+          44184,
+          44799,
+          44955,
+          45558,
+          46897,
+          46904,
+          48362,
+          49254,
+          49605,
+          51219,
+          51801,
+          52502,
+          53573,
+          54694,
+          55230,
+          55993,
+          56075,
+          56158,
+          58210,
+          58218,
+          60170,
+          60398,
+          60472,
+          61308,
+          61471,
+          61653,
+          63398,
+          63447,
+          64210
+        ],
+        "errors": [],
+        "external_removed_nodes": [],
+        "external_selected_nodes": [
+          1203,
+          1822,
+          6712,
+          7960,
+          8833,
+          9408,
+          14057,
+          15117,
+          24872,
+          26196,
+          29712,
+          31875,
+          33755,
+          34098,
+          36634,
+          37569,
+          41389,
+          46842,
+          47306,
+          53493,
+          56461,
+          61419,
+          65568,
+          65570,
+          65578
+        ],
+        "invalid_mastery": [],
+        "known_node_count": 3396,
+        "known_selected_node_count": 129,
+        "new_disconnected_nodes": [],
+        "removed_nodes": [
+          7388
+        ],
+        "root_nodes": [
+          54447
+        ],
+        "selected_node_count": 132,
+        "selected_roots": [
+          54447
+        ],
+        "special_tree_nodes": [
+          1203,
+          1822,
+          6712,
+          7960,
+          8833,
+          9408,
+          14057,
+          15117,
+          24872,
+          26196,
+          29712,
+          31875,
+          33755,
+          34098,
+          36634,
+          37569,
+          41389,
+          46842,
+          47306,
+          53493,
+          56461,
+          61419
+        ],
+        "tree_data_path": "/home/ubuntu/PathOfBuilding/src/TreeData/3_29/tree.lua",
+        "tree_version": "3_29",
+        "valid": true,
+        "warnings": [
+          "基準 Build 已存在未連通節點：[1346, 4036, 4184, 4367, 4397, 4502, 5296, 5743, 5972, 6770, 7388, 7444, 9386, 9567, 9586, 10031, 11420, 11689, 11730, 12128, 12246, 12536, 13009, 13164, 13232, 14113, 14745, 14936, 15064, 15167, 15228, 16123, 16790, 17735, 18769, 19008, 19501, 20528, 20987, 21958, 22090, 23027, 26270, 26866, 27203, 27323, 29061, 30393, 32241, 32710, 33310, 33435, 34171, 34506, 35958, 36412, 36452, 36542, 36678, 36949, 38190, 39841, 40609, 40927, 41251, 41415, 41472, 41635, 43061, 44184, 44799, 44955, 45558, 46897, 46904, 48362, 49254, 49605, 51219, 51801, 52502, 53573, 54694, 55230, 55993, 56075, 56158, 58210, 58218, 60170, 60398, 60472, 61308, 61471, 61653, 63398, 63447, 64210]"
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "purpose": "regression"
+      },
+      "name": "same-node-mastery",
+      "operations": {
+        "add_nodes": [
+          7388
+        ],
+        "mastery": [
+          [
+            45558,
+            30612
+          ]
+        ],
+        "remove_nodes": [
+          7388
+        ]
+      },
+      "power_report": {
+        "engine": "Path of Building Community Fork",
+        "hc_constraints": {
+          "checks": {
+            "attack_block": {
+              "actual": 74.0,
+              "minimum": 70.0,
+              "pass": true
+            },
+            "dps_gain": {
+              "actual_pct": 0.0,
+              "minimum_pct": 3.0,
+              "pass": false
+            },
+            "ehp_ratio": {
+              "actual": 1.0,
+              "minimum": 0.95,
+              "pass": true
+            },
+            "spell_block": {
+              "actual": 73.0,
+              "minimum": 70.0,
+              "pass": true
+            }
+          },
+          "passed": false
+        },
+        "scalar_delta": {
+          "Armour": {
+            "absolute": 0.0,
+            "after": 10288.0,
+            "before": 10288.0,
+            "percent": 0.0
+          },
+          "ChaosMaximumHitTaken": {
+            "absolute": 0.0,
+            "after": 20596.0,
+            "before": 20596.0,
+            "percent": 0.0
+          },
+          "ChaosResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "ColdMaximumHitTaken": {
+            "absolute": 0.0,
+            "after": 29279.0,
+            "before": 29279.0,
+            "percent": 0.0
+          },
+          "ColdResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "EffectiveAverageBlockChance": {
+            "absolute": 0.0,
+            "after": 74.0,
+            "before": 74.0,
+            "percent": 0.0
+          },
+          "EffectiveSpellBlockChance": {
+            "absolute": 0.0,
+            "after": 73.0,
+            "before": 73.0,
+            "percent": 0.0
+          },
+          "EnergyShield": {
+            "absolute": 0.0,
+            "after": 2249.0,
+            "before": 2249.0,
+            "percent": 0.0
+          },
+          "Evasion": {
+            "absolute": 0.0,
+            "after": 363.0,
+            "before": 363.0,
+            "percent": 0.0
+          },
+          "FireMaximumHitTaken": {
+            "absolute": 0.0,
+            "after": 29279.0,
+            "before": 29279.0,
+            "percent": 0.0
+          },
+          "FireResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "Life": {
+            "absolute": 0.0,
+            "after": 5149.0,
+            "before": 5149.0,
+            "percent": 0.0
+          },
+          "LightningMaximumHitTaken": {
+            "absolute": 0.0,
+            "after": 29279.0,
+            "before": 29279.0,
+            "percent": 0.0
+          },
+          "LightningResist": {
+            "absolute": 0.0,
+            "after": 75.0,
+            "before": 75.0,
+            "percent": 0.0
+          },
+          "PhysicalMaximumHitTaken": {
+            "absolute": 0.0,
+            "after": 10428.0,
+            "before": 10428.0,
+            "percent": 0.0
+          },
+          "SpellSuppressionChance": {
+            "absolute": 0.0,
+            "after": 0.0,
+            "before": 0.0,
+            "percent": null
+          },
+          "TotalDPS": {
+            "absolute": 0.0,
+            "after": 442240.55025127,
+            "before": 442240.55025127,
+            "percent": 0.0
+          },
+          "TotalDotDPS": {
+            "absolute": 0.0,
+            "after": 100686.38227091,
+            "before": 100686.38227091,
+            "percent": 0.0
+          },
+          "TotalEHP": {
+            "absolute": 0.0,
+            "after": 101832.70907909,
+            "before": 101832.70907909,
+            "percent": 0.0
+          }
+        },
+        "schema_version": 1,
+        "selected_skill": "Creeping Frost",
+        "skill_context": {
+          "after": {
+            "groups": [
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Creeping Frost",
+                    "quality": 20,
+                    "skillId": "CreepingFrost",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "CreepingFrost"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Gluttony",
+                    "quality": 20,
+                    "skillId": "SupportGluttony",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportGluttony"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Overloaded Intensity",
+                    "quality": 20,
+                    "skillId": "SupportOverloadedIntensity",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportOverloadedIntensity"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Strikes",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalStrikes",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalStrikes"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Pinpoint",
+                    "quality": 20,
+                    "skillId": "SupportPinpoint",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPinpoint"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Damage",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalDamage",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalDamage"
+                  }
+                ],
+                "group_index": 1,
+                "set_id": 1,
+                "slot": "Body Armour"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 2,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 3,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 4,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 5,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedLightningGolem",
+                      "minionTypes": [
+                        "SummonedLightningGolem"
+                      ]
+                    },
+                    "name": "Summon Lightning Golem",
+                    "quality": 20,
+                    "skillId": "SummonLightningGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonLightningGolem"
+                  }
+                ],
+                "group_index": 6,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedFlameGolem",
+                      "minionTypes": [
+                        "SummonedFlameGolem"
+                      ]
+                    },
+                    "name": "Summon Flame Golem",
+                    "quality": 20,
+                    "skillId": "SummonFlameGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonFlameGolem"
+                  }
+                ],
+                "group_index": 7,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedChaosGolem",
+                      "minionTypes": [
+                        "SummonedChaosGolem"
+                      ]
+                    },
+                    "name": "Summon Chaos Golem",
+                    "quality": 0,
+                    "skillId": "SummonChaosGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonChaosGolem"
+                  }
+                ],
+                "group_index": 8,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Winter Orb",
+                    "quality": 20,
+                    "skillId": "WinterOrb",
+                    "skillMineCount": null,
+                    "skillPart": 1,
+                    "skillStageCount": null,
+                    "variantId": "WinterOrb"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Power Charge On Critical",
+                    "quality": 20,
+                    "skillId": "SupportPowerChargeOnCritical",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPowerChargeOnCritical"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Ice Bite",
+                    "quality": 20,
+                    "skillId": "SupportIceBite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIceBite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Focused Channelling",
+                    "quality": 20,
+                    "skillId": "SupportFocusedChannelling",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFocusedChannelling"
+                  }
+                ],
+                "group_index": 9,
+                "set_id": 1,
+                "slot": "Helmet"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Tempest Shield",
+                    "quality": 0,
+                    "skillId": "TempestShield",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "TempestShield"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostbite",
+                    "quality": 0,
+                    "skillId": "Frostbite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostbite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Herald of Ice",
+                    "quality": 20,
+                    "skillId": "HeraldOfIce",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "HeraldOfIce"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Arctic Armour",
+                    "quality": 0,
+                    "skillId": "ArcticArmour",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ArcticArmour"
+                  }
+                ],
+                "group_index": 10,
+                "set_id": 1,
+                "slot": "Boots"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "transfigured",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Righteous Fire of Arcane Devotion",
+                    "quality": 0,
+                    "skillId": "RighteousFireAltX",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RighteousFireAltX"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedStoneGolem",
+                      "minionTypes": [
+                        "SummonedStoneGolem"
+                      ]
+                    },
+                    "name": "Summon Stone Golem",
+                    "quality": 20,
+                    "skillId": "SummonStoneGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonStoneGolem"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Flesh and Stone",
+                    "quality": 0,
+                    "skillId": "FleshAndStone",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "FleshAndStone"
+                  }
+                ],
+                "group_index": 11,
+                "set_id": 1,
+                "slot": "Weapon 2"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostblink",
+                    "quality": 0,
+                    "skillId": "Frostblink",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostblink"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Faster Attacks",
+                    "quality": 20,
+                    "skillId": "SupportFasterAttacks",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFasterAttacks"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 1,
+                    "minionContext": null,
+                    "name": "Lifetap",
+                    "quality": 20,
+                    "skillId": "SupportLifetap",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportLifetap"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Shield Charge",
+                    "quality": 0,
+                    "skillId": "ShieldCharge",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ShieldCharge"
+                  }
+                ],
+                "group_index": 12,
+                "set_id": 1,
+                "slot": "Gloves"
+              }
+            ],
+            "selected_skill": "Creeping Frost"
+          },
+          "before": {
+            "groups": [
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Creeping Frost",
+                    "quality": 20,
+                    "skillId": "CreepingFrost",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "CreepingFrost"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Gluttony",
+                    "quality": 20,
+                    "skillId": "SupportGluttony",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportGluttony"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 2,
+                    "minionContext": null,
+                    "name": "Overloaded Intensity",
+                    "quality": 20,
+                    "skillId": "SupportOverloadedIntensity",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportOverloadedIntensity"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Strikes",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalStrikes",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalStrikes"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Pinpoint",
+                    "quality": 20,
+                    "skillId": "SupportPinpoint",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPinpoint"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Increased Critical Damage",
+                    "quality": 20,
+                    "skillId": "SupportIncreasedCriticalDamage",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIncreasedCriticalDamage"
+                  }
+                ],
+                "group_index": 1,
+                "set_id": 1,
+                "slot": "Body Armour"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 2,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 3,
+                "set_id": 1,
+                "slot": "Weapon 2 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 4,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 19,
+                    "minionContext": null,
+                    "name": "Raise Spectre",
+                    "quality": 0,
+                    "skillId": "RaiseSpectre",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RaiseSpectre"
+                  }
+                ],
+                "group_index": 5,
+                "set_id": 1,
+                "slot": "Weapon 1 Swap"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedLightningGolem",
+                      "minionTypes": [
+                        "SummonedLightningGolem"
+                      ]
+                    },
+                    "name": "Summon Lightning Golem",
+                    "quality": 20,
+                    "skillId": "SummonLightningGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonLightningGolem"
+                  }
+                ],
+                "group_index": 6,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedFlameGolem",
+                      "minionTypes": [
+                        "SummonedFlameGolem"
+                      ]
+                    },
+                    "name": "Summon Flame Golem",
+                    "quality": 20,
+                    "skillId": "SummonFlameGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonFlameGolem"
+                  }
+                ],
+                "group_index": 7,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedChaosGolem",
+                      "minionTypes": [
+                        "SummonedChaosGolem"
+                      ]
+                    },
+                    "name": "Summon Chaos Golem",
+                    "quality": 0,
+                    "skillId": "SummonChaosGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonChaosGolem"
+                  }
+                ],
+                "group_index": 8,
+                "set_id": 1,
+                "slot": "Weapon 1"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Winter Orb",
+                    "quality": 20,
+                    "skillId": "WinterOrb",
+                    "skillMineCount": null,
+                    "skillPart": 1,
+                    "skillStageCount": null,
+                    "variantId": "WinterOrb"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Power Charge On Critical",
+                    "quality": 20,
+                    "skillId": "SupportPowerChargeOnCritical",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportPowerChargeOnCritical"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Ice Bite",
+                    "quality": 20,
+                    "skillId": "SupportIceBite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportIceBite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Focused Channelling",
+                    "quality": 20,
+                    "skillId": "SupportFocusedChannelling",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFocusedChannelling"
+                  }
+                ],
+                "group_index": 9,
+                "set_id": 1,
+                "slot": "Helmet"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Tempest Shield",
+                    "quality": 0,
+                    "skillId": "TempestShield",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "TempestShield"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostbite",
+                    "quality": 0,
+                    "skillId": "Frostbite",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostbite"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Herald of Ice",
+                    "quality": 20,
+                    "skillId": "HeraldOfIce",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "HeraldOfIce"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Arctic Armour",
+                    "quality": 0,
+                    "skillId": "ArcticArmour",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ArcticArmour"
+                  }
+                ],
+                "group_index": 10,
+                "set_id": 1,
+                "slot": "Boots"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "transfigured",
+                    "level": 21,
+                    "minionContext": null,
+                    "name": "Righteous Fire of Arcane Devotion",
+                    "quality": 0,
+                    "skillId": "RighteousFireAltX",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "RighteousFireAltX"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": {
+                      "activeSkillIndex": 1,
+                      "activeSkillIndexCalcs": 1,
+                      "contextSource": "PoB SkillsTab gem instance + grantedEffect.minionList",
+                      "minionId": "SummonedStoneGolem",
+                      "minionTypes": [
+                        "SummonedStoneGolem"
+                      ]
+                    },
+                    "name": "Summon Stone Golem",
+                    "quality": 20,
+                    "skillId": "SummonStoneGolem",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SummonStoneGolem"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Flesh and Stone",
+                    "quality": 0,
+                    "skillId": "FleshAndStone",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "FleshAndStone"
+                  }
+                ],
+                "group_index": 11,
+                "set_id": 1,
+                "slot": "Weapon 2"
+              },
+              {
+                "gems": [
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Frostblink",
+                    "quality": 0,
+                    "skillId": "Frostblink",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "Frostblink"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Faster Attacks",
+                    "quality": 20,
+                    "skillId": "SupportFasterAttacks",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportFasterAttacks"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "support",
+                    "level": 1,
+                    "minionContext": null,
+                    "name": "Lifetap",
+                    "quality": 20,
+                    "skillId": "SupportLifetap",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "SupportLifetap"
+                  },
+                  {
+                    "enabled": true,
+                    "gemType": "active",
+                    "level": 20,
+                    "minionContext": null,
+                    "name": "Shield Charge",
+                    "quality": 0,
+                    "skillId": "ShieldCharge",
+                    "skillMineCount": null,
+                    "skillPart": null,
+                    "skillStageCount": null,
+                    "variantId": "ShieldCharge"
+                  }
+                ],
+                "group_index": 12,
+                "set_id": 1,
+                "slot": "Gloves"
+              }
+            ],
+            "selected_skill": "Creeping Frost"
+          },
+          "changed": false
+        },
+        "tree": "3_29",
+        "warnings": []
+      },
+      "rank": 2,
+      "score": [
+        0,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "tree_diff": {
+        "added_nodes": [],
+        "ascend_class": {
+          "candidate": "2",
+          "current": "2"
+        },
+        "candidate": "attached_build.candidate.xml",
+        "candidate_node_count": 133,
+        "changed_mastery": {
+          "added": [],
+          "removed": []
+        },
+        "class": {
+          "candidate": "3",
+          "current": "3"
+        },
+        "current": "attached_build.xml",
+        "current_node_count": 133,
+        "point_delta": 0,
+        "removed_nodes": [],
+        "tree_version": {
+          "candidate": "3_29",
+          "current": "3_29"
+        }
+      },
+      "tree_validation": {
+        "added_disconnected_nodes": [],
+        "added_nodes": [],
+        "baseline_disconnected_nodes": [
+          1346,
+          4036,
+          4184,
+          4367,
+          4397,
+          4502,
+          5296,
+          5743,
+          5972,
+          6770,
+          7388,
+          7444,
+          9386,
+          9567,
+          9586,
+          10031,
+          11420,
+          11689,
+          11730,
+          12128,
+          12246,
+          12536,
+          13009,
+          13164,
+          13232,
+          14113,
+          14745,
+          14936,
+          15064,
+          15167,
+          15228,
+          16123,
+          16790,
+          17735,
+          18769,
+          19008,
+          19501,
+          20528,
+          20987,
+          21958,
+          22090,
+          23027,
+          26270,
+          26866,
+          27203,
+          27323,
+          29061,
+          30393,
+          32241,
+          32710,
+          33310,
+          33435,
+          34171,
+          34506,
+          35958,
+          36412,
+          36452,
+          36542,
+          36678,
+          36949,
+          38190,
+          39841,
+          40609,
+          40927,
+          41251,
+          41415,
+          41472,
+          41635,
+          43061,
+          44184,
+          44799,
+          44955,
+          45558,
+          46897,
+          46904,
+          48362,
+          49254,
+          49605,
+          51219,
+          51801,
+          52502,
+          53573,
+          54694,
+          55230,
+          55993,
+          56075,
+          56158,
+          58210,
+          58218,
+          60170,
+          60398,
+          60472,
+          61308,
+          61471,
+          61653,
+          63398,
+          63447,
+          64210
+        ],
+        "class_id": 3,
+        "disconnected_nodes": [
+          1346,
+          4036,
+          4184,
+          4367,
+          4397,
+          4502,
+          5296,
+          5743,
+          5972,
+          6770,
+          7388,
+          7444,
+          9386,
+          9567,
+          9586,
+          10031,
+          11420,
+          11689,
+          11730,
+          12128,
+          12246,
+          12536,
+          13009,
+          13164,
+          13232,
+          14113,
+          14745,
+          14936,
+          15064,
+          15167,
+          15228,
+          16123,
+          16790,
+          17735,
+          18769,
+          19008,
+          19501,
+          20528,
+          20987,
+          21958,
+          22090,
+          23027,
+          26270,
+          26866,
+          27203,
+          27323,
+          29061,
+          30393,
+          32241,
+          32710,
+          33310,
+          33435,
+          34171,
+          34506,
+          35958,
+          36412,
+          36452,
+          36542,
+          36678,
+          36949,
+          38190,
+          39841,
+          40609,
+          40927,
+          41251,
+          41415,
+          41472,
+          41635,
+          43061,
+          44184,
+          44799,
+          44955,
+          45558,
+          46897,
+          46904,
+          48362,
+          49254,
+          49605,
+          51219,
+          51801,
+          52502,
+          53573,
+          54694,
+          55230,
+          55993,
+          56075,
+          56158,
+          58210,
+          58218,
+          60170,
+          60398,
+          60472,
+          61308,
+          61471,
+          61653,
+          63398,
+          63447,
+          64210
+        ],
+        "errors": [],
+        "external_removed_nodes": [],
+        "external_selected_nodes": [
+          1203,
+          1822,
+          6712,
+          7960,
+          8833,
+          9408,
+          14057,
+          15117,
+          24872,
+          26196,
+          29712,
+          31875,
+          33755,
+          34098,
+          36634,
+          37569,
+          41389,
+          46842,
+          47306,
+          53493,
+          56461,
+          61419,
+          65568,
+          65570,
+          65578
+        ],
+        "invalid_mastery": [],
+        "known_node_count": 3396,
+        "known_selected_node_count": 130,
+        "new_disconnected_nodes": [],
+        "removed_nodes": [],
+        "root_nodes": [
+          54447
+        ],
+        "selected_node_count": 133,
+        "selected_roots": [
+          54447
+        ],
+        "special_tree_nodes": [
+          1203,
+          1822,
+          6712,
+          7960,
+          8833,
+          9408,
+          14057,
+          15117,
+          24872,
+          26196,
+          29712,
+          31875,
+          33755,
+          34098,
+          36634,
+          37569,
+          41389,
+          46842,
+          47306,
+          53493,
+          56461,
+          61419
+        ],
+        "tree_data_path": "/home/ubuntu/PathOfBuilding/src/TreeData/3_29/tree.lua",
+        "tree_version": "3_29",
+        "valid": true,
+        "warnings": [
+          "基準 Build 已存在未連通節點：[1346, 4036, 4184, 4367, 4397, 4502, 5296, 5743, 5972, 6770, 7388, 7444, 9386, 9567, 9586, 10031, 11420, 11689, 11730, 12128, 12246, 12536, 13009, 13164, 13232, 14113, 14745, 14936, 15064, 15167, 15228, 16123, 16790, 17735, 18769, 19008, 19501, 20528, 20987, 21958, 22090, 23027, 26270, 26866, 27203, 27323, 29061, 30393, 32241, 32710, 33310, 33435, 34171, 34506, 35958, 36412, 36452, 36542, 36678, 36949, 38190, 39841, 40609, 40927, 41251, 41415, 41472, 41635, 43061, 44184, 44799, 44955, 45558, 46897, 46904, 48362, 49254, 49605, 51219, 51801, 52502, 53573, 54694, 55230, 55993, 56075, 56158, 58210, 58218, 60170, 60398, 60472, 61308, 61471, 61653, 63398, 63447, 64210]"
+        ]
+      }
+    }
+  ],
+  "schema_version": 1,
+  "source": "attached_build.xml",
+  "success_count": 2
+}
